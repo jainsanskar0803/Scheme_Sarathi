@@ -1,0 +1,791 @@
+[
+  {
+    "scheme_id": "nmmss",
+    "scheme_name": "National Means-Cum-Merit Scholarship Scheme",
+    "category": [
+      "Education & Learning"
+    ],
+    "category_display": [
+      "Education"
+    ],
+    "level": "central",
+    "state": null,
+    "benefit": "Under this scheme, 1,00,000 fresh scholarships @ Rs. 12,000/- per annum (₹1,000 per month) are awarded to meritorious students every year at the Class IX level, which can be continued up to Class 12th. The sanction of funds will be done from the Annual Budget Provision for releasing them to SBI, the implementing bank for the scheme for disbursal of scholarships, to students directly into their bank accounts by electronic transfer through Direct Benefit Transfer (DBT). The awardees will be required to open bank accounts preferably in SBI, any public sector bank, or any scheduled bank which has a core banking facility.",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": null,
+      "max_age": null,
+      "max_annual_income": 350000,
+      "gender": null,
+      "caste": [
+        "any"
+      ],
+      "states": [
+        "any"
+      ],
+      "domicile": null,
+      "occupation": null,
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": null
+    },
+    "unverified_criteria": [
+      "Applicant must be entering class 9th as a regular student in a government, government-aided, or local body school",
+      "Minimum 55% marks in Class 7th examination (relaxable by 5% for SC/ST students)",
+      "Must pass both MAT and SAT tests with at least 40% aggregate marks (32% for SC/ST students)",
+      "Cannot hold any other Central Government scholarship simultaneously"
+    ],
+    "missing_information": [
+      "min_age: not stated — eligibility is grade-based (class 9th), not age-based",
+      "max_age: not stated",
+      "gender: not mentioned in eligibility text",
+      "domicile: not mentioned",
+      "occupation: not stated as a rule — student status is implied by grade requirement",
+      "disability_required: not mentioned",
+      "bpl_required: not mentioned",
+      "marital_status: not mentioned"
+    ],
+    "required_documents": "Class 7th mark sheet (only from government schools) (compulsory) Caste Certificate Income Certificate of Parents (compulsory) Disability Certificate Domicile Certificate",
+    "application_method": "New Registration : Step 1: Visit the Registration page of the National Scholarships Portal. Step 2: Guidelines for Registration will appear. Scroll to the bottom. Read carefully the undertaking. Accept the Terms. Click “Continue”. Step 3: A Registration Form will appear. (The fields marked as * are compulsory). Fill in the details and click “Register”. Your Application ID and password will be displayed. The same will also be sent as an SMS to your registered mobile number. Fresh Application : Step 1: Visit the applicant Login page of the National Scholarships Portal Enter your Application ID and password. Step 2: Type the Captcha and click “Login”. Step 3: On the next screen, provide the OTP received on your registered mobile number. You will be directed to the Password Reset screen. Create a new password and confirm. Step 4: Click “Submit”. You will be directed to the “Applicant’s Dashboard”. Step 5: On the left pane, click “Application Form”. The fields marked as * are compulsory. Fill in the details and upload the documents. The verification of credentials of the students (caste, educational qualifications etc.) will be done through the DIGILOCKER facility of the MeitY, Govt. of India. Step 6: You can either click on “Save as Draft” to complete the application later. Else, click “Final Submit” to apply. Track Payment Status: The student can track their payment status from the template “Know Your Payment” in the Public Financial Management System (PFMS) Portal either by indicating their Aadhaar Number, Bank Account number or NSP Application ID.",
+    "tags": [
+      "Scholarship",
+      "Economically Weaker Sections"
+    ]
+  },
+  {
+    "scheme_id": "post-st",
+    "scheme_name": "Post Matric Scholarship Scheme For The Students Belonging To Scheduled Tribe For Studies In India",
+    "category": [
+      "Education & Learning"
+    ],
+    "category_display": [
+      "Education"
+    ],
+    "level": "central",
+    "state": null,
+    "benefit": "Stipend: The student will be entitled to stipend as per rates listed below. Courses Hostellers Day Scholar Bachelor, Master Degree, MPhil/PhD degree leading to Degree, PG Diploma, in professional courses in various streams Monthly: 1200 ; Annually: 12000 Monthly: 500 ; Annually: 5500 All non-professional recognized courses leading to a Bachelor, Master Degree, MPhil/PhD degree not covered under Group I in Arts, Science and Commerce like BA/B.Sc/B.Com or MA/MSc/M.Com Monthly: 820 ; Annually: 8200 Monthly: 530; Annually: 5300 Vocational stream, ITI courses, 3 year diploma courses in Polytechnics, etc. Monthly: 570; Annually: 5700 Monthly: 300; Annually: 3000 All post-matriculation level non-degree courses for which entrance qualification is High School (Class X), e.g. senior secondary certificate (class XI and XII). Monthly: 380; Annually: 3800 Monthly: 230; Annually: 2300 Note 1: It needs to be clarified that the stipend is a sort of incentive provided to a student for pursuing a particular course and in no way meant to provide for reimbursement of boarding and lodging charges like mess, hostel or other similar charges. Note 2: Additional Disability Allowance: -In addition to stipend provided above, an additional Stipend of Rs. 800/-per month (Rs. 9600 annually) will be given to the Divyangjan student who is hosteller and Rs.600 (Rs 7200 annually) to Day scholar. The disability as defined under the relevant ‘Disabilities Act’ has to be certified by competent medical authority of the State Govt./UT Administration. The provisions of Disability allowance will also apply to leprosy-cured and students having sickle cell Anemia or Thalassemia as notified by Ministry of Social Justice and empowerment Note 3: Under “National fellowship & Scholarship for Higher Education of ST students” Scheme [Top class Scholarship], MoTA is providing Scholarships to students for pursuing graduation and post-graduation courses in Top Class Institutes (currently 252) across India. To avoid duplicity, students pursuing courses in such Institutes will not be entitled for benefit under Post Matric Scholarship. Scholarship holder under this scheme can hold only one scholarship/stipend at a time. A centrally sponsored scholarship scheme by the Ministry of Tribal Affairs for students from scheduled tribes pursuing post-matriculation or post-secondary stages to enable them to complete their education. Components of the Scheme: The scholarship has two components: Component 1: Payment of compulsory fees charged by educational institutions subject to the limit fixed by the concerned State. Component 2: Payment of Maintenance amount varying from ₹230/- to ₹1200/- per month, depending upon the course of study pursued by the student.",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": null,
+      "max_age": null,
+      "max_annual_income": 200000,
+      "gender": null,
+      "caste": [
+        "ST"
+      ],
+      "states": [
+        "any"
+      ],
+      "domicile": null,
+      "occupation": null,
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": null
+    },
+    "unverified_criteria": [
+      "Applicant must have passed Matriculation, Higher Secondary, or equivalent",
+      "Must be enrolled in a recognized post-matriculation/post-secondary institution",
+      "Cannot hold another scholarship/stipend simultaneously under this scheme",
+      "Employed students must take leave without pay to qualify as full-time students"
+    ],
+    "missing_information": [
+      "min_age: not stated",
+      "max_age: not stated",
+      "gender: not mentioned",
+      "domicile: not mentioned",
+      "occupation: student status implied but not stated as rule",
+      "disability_required: not mentioned",
+      "bpl_required: not mentioned",
+      "marital_status: not mentioned"
+    ],
+    "required_documents": "An application for a scholarship should comprise: One copy of the application for scholarship in the prescribed form (separate application forms have been prescribed for ‘fresh’ and renewal scholarships by concerned States/UTs). One copy of the passport-size photograph with signatures of the student thereon (for fresh scholarship). One attested copy of certificates, diplomas, degrees, etc. in respect of all examinations passed. A certificate (in original) of Caste duly signed by an authorized Revenue Officer not below the rank of Tahsildar. An income declaration by the self-employed parents/guardians, stating definite income from all sources through an affidavit on nonjudicial stamp paper. Employed parents/guardians are required to obtain an income certificate from their employer and for any additional income from other sources, they would furnish a declaration by way of an affidavit on non-judicial stamp paper. A receipt in acknowledgment of the scholarship in the previous year on the form attached to the application only duly counter-signed by the Head of the Institution concerned if the applicant was in receipt of a scholarship under this scheme in the preceding year.",
+    "application_method": "Application complete in all respects shall be submitted to the Head of the Institution, being attended or last attended by the candidates and shall be addressed to an officer specified for this purpose by the Government of State/Union Territory to which the student belongs, in accordance with the instructions issued by them from time to time.",
+    "tags": [
+      "Scholarship",
+      "Scheduled Tribe Students",
+      "Post Matric",
+      "Education",
+      "Study"
+    ]
+  },
+  {
+    "scheme_id": "pm-daksh",
+    "scheme_name": "Pradhan Mantri Dakshta Aur Kushalta Sampann Hitgrahi (PM-DAKSH)",
+    "category": [
+      "Skills & Employment"
+    ],
+    "category_display": [
+      "Employment"
+    ],
+    "level": "central",
+    "state": null,
+    "benefit": "Key benefits: Training free of cost for the trainees, 100% grants by Government. Stipend will be given to trainees during the period of training. Trained candidates will be provided certification after successful completion of training and assessment. Trained candidates will be provided placement after assessment and certification. Category of Skilling Programmes: 1. Up-skilling/Re-skilling under Recognition of Prior Learning (RPL): Target Group: Up-skilling / Re-skilling under Recognition of Prior Learning (RPL) will only be applicable to SafaiMitras including waster pickers who constitute the bottom of the pyramid. Curriculum: In respect of Safai Mitras including waste pickers, the curriculum will include the programmes on safe & healthy sanitation practices, occupational practices as per relevant and approved Qualification Packs (QPs). Certification would be aligned with the standard process. Period of Training: The duration of the training programmes will be of approximately 35 hours keeping in mind the occupational hours of the trainees. Training Cost: The training cost will be limited to extent of Common Cost Norms (CCN) issued by Ministry of Skill Development and Entrepreneurship (MSDE) as applicable from time to time. Other Expenses: As the trainees are already employed, they will be paid @₹500/- per person to Safai Mitras including Waste Pickers in the form of stipend, for duration of training of Up-skilling and Re-skilling under RPL, towards compensation of their wage loss, during the period of training. 2. Short-Term Courses (focus on wage/self-employment): Target Group: Most disempowered groups belonging to SC/OBC/EWS/DNT and Sanitation Workers including Waste Pickers and their dependents having aspirations to be employed in sectors having good demand in job market with suitable wage. Curriculum: The Curriculum of the training programmes will be as per National Skill Qualification Framework (NSQF)/National Occupational Standard (NOS), issued by Ministry of Skill Development and Entrepreneurship, Government of India in various job roles with focus on wage and self-employment opportunities such as self-employed tailors training, furniture making, food processing, carpet weaving, beautician workers, leather work, latex harvesting, tyre fitting along with financial and digital literacy, etc. Training to be delivered through accredited and affiliated training centres. Period of Training: The duration of the training programmes will be less than 1200 hours, as stipulated in National Occupational Standards (NOS) and Qualification Packs (QPs). Training Cost: The training cost will be as per Common Cost Norms for NSQF job roles or as stipulated by concerned board as applicable and as amended from time to time. Other Expenses: For non-residential training programmes , the trainees will be paid stipend @ ₹1,500/- per month for SC candidates, ₹1,000/- per month to OBCs/EWSs/DNTs and ₹1,500/- per month to Sanitation Workers including waste pickers and their dependents. For residential training programmes , wherever necessary, the trainees will be provided boarding and lodging and expenses compensated within CCN, for complete duration of the training programmes. No stipend will be separately payable except in case of Safai Mitras, Waste Pickers & their dependents who will be paid ₹500/- per month. 3. Entrepreneurial Development Programmes (EDP): Implementing Agency: Ministry will approach National Institute for Entrepreneurship and Small Business Development (NIESBUD) or any other organisation viz Indian Institute of Entrepreneurship (IIE) under Ministry of Skill Development & Entrepreneurship for conducting EDP training.",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": 18,
+      "max_age": 45,
+      "max_annual_income": null,
+      "gender": null,
+      "caste": [
+        "SC",
+        "OBC",
+        "EWS"
+      ],
+      "states": [
+        "any"
+      ],
+      "domicile": null,
+      "occupation": null,
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": null
+    },
+    "unverified_criteria": [
+      "Income limit is caste-conditional: OBC/EWS must have family income < ₹3,00,000; SC/DNT/Safai Mitras have no income limit — conditional logic not supported by current EligibilityRules",
+      "DNT (Denotified & Nomadic Tribes) is an eligible group not covered by the current caste vocabulary",
+      "Safai Mitras (including Waste Pickers) are an occupational target group, not a caste category",
+      "Must register on Skill India Digital Hub (SIDH)",
+      "Must possess a valid Aadhaar card",
+      "Biometric attendance > 70% required during training"
+    ],
+    "missing_information": [
+      "max_annual_income: omitted — income criterion is caste-conditional and cannot be represented as a single threshold",
+      "gender: not mentioned",
+      "domicile: not mentioned",
+      "disability_required: not mentioned",
+      "bpl_required: not mentioned",
+      "marital_status: not mentioned",
+      "occupation: target groups described but not a simple field value"
+    ],
+    "required_documents": "Identity proof i.e. Aadhaar Card Passport Size photograph Caste/community certificate Income certificate, if applicable Proof of age Residence proof Educational Qualification certificates Occupation Certificate in case Safai Mitras including waster pickers Bank account details/Bank Passbook (Aadhaar linked bank account) Any other documents as required",
+    "application_method": "Step 1: Visit the website of Skill India Digital Hub (SIDH). On top-right side, click on the \"Register\" button. Step 2: Choose \"Learner/Participant\" in next page. Step 3: Enter your mobile number. Click on \"Continue\". Step 4: Validate the OTP and set a password. Step 5: After login, validate your profile through e-KYC to complete the registration process.",
+    "tags": [
+      "Skill",
+      "Training",
+      "Employment",
+      "Stipend",
+      "Scheduled Caste",
+      "Other Backward Class",
+      "Economically Weaker Section"
+    ]
+  },
+  {
+    "scheme_id": "sys",
+    "scheme_name": "Saksham Yuva Scheme",
+    "category": [
+      "Skills & Employment"
+    ],
+    "category_display": [
+      "Employment"
+    ],
+    "level": "state",
+    "state": "Haryana",
+    "benefit": "The following is the amount of Unemployment Allowance and Honorarium under the Saksham Yuva Scheme: Sl. No. Qualification (for both Male & Female) Rate of Unemployment Allowance Rate of honorarium 1 10+2 ₹900/- per month ₹6,000/- per month 2 Graduates ₹1,500/- per month ₹6,000/- per month 3 Post-Graduates ₹3,000/- per month ₹6,000/- per month",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": 18,
+      "max_age": 35,
+      "max_annual_income": 300000,
+      "gender": null,
+      "caste": null,
+      "states": [
+        "Haryana"
+      ],
+      "domicile": null,
+      "occupation": null,
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": null
+    },
+    "unverified_criteria": [
+      "Applicant must be registered in the Live Register of the concerned Employment Exchange in Haryana",
+      "10+2 must have been passed as a regular student from a recognized school in Haryana or UT Chandigarh",
+      "Graduate/Post-graduate degree must be from a regular course from a recognized university in Haryana, UT Chandigarh, or NCT Delhi",
+      "Applicant must not be in any employment (public/private/self-employed)",
+      "Applicant must not be a regular student under a full-time course",
+      "Honorarium paid for a maximum of 3 years or until age 35, whichever is earlier"
+    ],
+    "missing_information": [
+      "gender: not mentioned",
+      "caste: not mentioned — no caste restriction stated",
+      "domicile: not mentioned",
+      "disability_required: not mentioned",
+      "bpl_required: not mentioned",
+      "marital_status: not mentioned"
+    ],
+    "required_documents": "Applicant’s Passport-size photograph Applicant’s Signature Aadhaar Card Domicile Certificate Family ID (PPP document) Birth certificate/Metric Certificate for date of Birth proof Highest qualification Certificate/Degree/Provisional Degree Employment Registration Certificate Income certificate issued by competent Authority Any other document as required",
+    "application_method": "Registration Process on Saksham Yuva Portal: Step 1: Visit the official portal of Saksham Yuva: https://hreyahs.gov.in . Step 2: On the homepage, read the instructions provided under “Instructions for Saksham Yuva” and click on ‘ Sign Up ’ under ‘Saksham Yuva’. Step 3: Select your qualification, click on ‘Go to Registration,’ read the terms & conditions carefully, enter your details, and then click on ‘Submit & Next’. Step 4: Enter the OTP sent to your email and mobile number. Then, enter your family ID and select your name. Step 5: Enter the OTP sent to the mobile number registered with the family ID and click on ‘Register’. After successful registration, a User ID and password will be sent to your registered mobile number and email. Login to Apply Under the Scheme: Step 1: Visit the official portal of Saksham Yuva: https://hreyahs.gov.in . Step 2: On the homepage, click on ‘ Sign In ’ under Saksham Yuva. Enter your User ID, Password, Qualification, and Captcha, then click on ‘Login’. Step 3: Read the terms & conditions, select the eligibility conditions and declaration conditions, and click on ‘Save & Next’. Step 4: Enter your Personal Information, Family Background, Qualification, Additional Qualification, Special Qualification, District Preference, Job Preference, Job Status, and Skill Preference. Step 5: Upload all the required documents, agree to the declaration, and submit the application form. Step 6: Print the filled application form, attach all the relevant documents, and submit it to the nearest employment office. Registration Process on Antyodaya-SARAL Portal: Step 01: The eligible applicant may apply online through the Official Portal- Antyodaya-SARAL Portal . Step 02: If the applicant is not registered on the portal, he/she gets registered there. Step 03: For registration, click “ New User ” under ‘Sign In Here’ and fill in all the mandatory details i.e. Name, Email ID, Mobile Number, Password & State. Click on ‘Submit’. Step 04: Verify your mobile number and email ID through the received OTP and complete the registration process. Login to apply for the scheme: Step 01: To avail the benefits of the scheme, visit the Official Antyodaya-SARAL Portal and log in through the email ID used while registering. Step 02: Enter Password & Captcha and click on ‘Login’. Step 03: After successful login, click on ‘Apply for Services’ and then ‘View all Available Services’ Step 04: Now, you can search for the scheme and click on the scheme to go ahead and fill out the application form. Step 05: Enter your Parivar Pehchan Patra number - Family ID and click on “Click here to Fetch Family Data” which displays the family members registered under the given Family ID. Step 06: Select the beneficiary/applicant name and enter the OTP that is being sent to the selected family member for verification. Click on “Click to Verify” Step 07: Fill in all the mandatory details and upload all the mandatory documents. Step 08: Preview the application form and click on ‘Submit’. Tracking of Application: Applicants can track his/her application through the Official Antyodaya-SARAL Portal by entering their Department Name, Scheme Name, and Application Reference ID.",
+    "tags": [
+      "Saksham Yuva",
+      "Employement",
+      "Youth",
+      "Unemployment",
+      "Allowance",
+      "Unemployed"
+    ]
+  },
+  {
+    "scheme_id": "pmay-g",
+    "scheme_name": "Pradhan Mantri Awaas Yojana - Gramin",
+    "category": [
+      "Housing & Shelter"
+    ],
+    "category_display": [
+      "Housing"
+    ],
+    "level": "central",
+    "state": null,
+    "benefit": "Financial Assistance of ₹ 1,20,000 per unit for plain areas; and ₹ 1,30,000 per unit for hilly areas, difficult areas, and IAP districts (Himalayan states, North-Eastern states, and Union Territories of Jammu & Kashmir). A willing beneficiary can avail of institutional finance (loan) of up to ₹ 70,000 at 3% lower interest rate, to build a permanent house. The maximum principal amount for which subsidy can be sought is ₹ 2,00,000. The minimum size of the house shall be is 25 sq m including a dedicated area for hygienic cooking. In convergence with Swachh Bharat Mission-Gramin (SBM-G), the beneficiaries get financial assistance of up to ₹ 12,000 for the construction of toilets. In convergence with MGNREGA, the beneficiary is entitled to employment as unskilled labor (Rural Mason Training) at ₹ 90.95 per day for 95 days. In convergence with Pradhan Mantri Ujjwala Yojana, one LPG connection per house is provided. Convergence with different government programmes for piped drinking water, electricity connection, clean & efficient cooking fuel, treatment of social and liquid waste, etc. Payments are made electronically directly to bank accounts or post office accounts that are linked to Aadhaar. Note: Beneficiaries are identified using the \"Housing Deprivation Parameters\" from the Socio-Economic and Caste Census (SECC) 2011 [ https://secc.gov.in/] , further verified by the Gram Sabhas.",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": null,
+      "max_age": null,
+      "max_annual_income": null,
+      "gender": null,
+      "caste": null,
+      "states": [
+        "any"
+      ],
+      "domicile": [
+        "rural"
+      ],
+      "occupation": null,
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": null
+    },
+    "unverified_criteria": [
+      "Beneficiary must be houseless or living in a house with kutcha walls and kutcha roof (zero, one, or two rooms) — housing deprivation criterion not in EligibilityRules model",
+      "Eligibility is determined from SECC 2011 data — applicants must appear in SECC database",
+      "Priority is assigned by a multi-layered deprivation score across houselessness, rooms, and socio-economic parameters",
+      "SC/ST households receive 60% of state targets (quota, not eligibility gate)",
+      "15% of funds earmarked for Minorities at the national level (quota)"
+    ],
+    "missing_information": [
+      "min_age: not stated as eligibility criterion",
+      "max_age: not stated",
+      "max_annual_income: not stated — eligibility is SECC-data based, not income-based",
+      "gender: not a hard gate (female-headed households get priority score only)",
+      "caste: not a hard gate (SC/ST/Minorities receive quota allocation, not exclusion of others)",
+      "occupation: not mentioned as eligibility criterion",
+      "disability_required: disability adds deprivation score but is not a gate",
+      "bpl_required: not stated as a formal criterion",
+      "marital_status: widows mentioned as tie-breaker, not as eligibility criterion"
+    ],
+    "required_documents": "Aadhaar number and a self-attested copy of the Aadhaar Card (If the applicant is illiterate, then in such case a consent letter has to be obtained along with the thumbprint of the applicant) Job Card (duly registered with MGNREGA) Bank account details – both originals and duplicates. Swachh Bharat Mission (SBM) number. Affidavit stating the beneficiaries, or their family members do not own a pucca house.",
+    "application_method": "Beneficiary Registration Manual - https://pmayg.nic.in/netiayHome/Document/Document-PMAYG-Registratio-Manual.pdf There are four sections to the beneficiary registration process: Personal details, Bank account details, Convergence details, and Details from the concerned office. To successfully register or add the beneficiary, follow the steps given below: Visit the official website for login PMAY-G. Fill in the details required in the personal details section (such as gender, mobile number, Aadhaar number, etc.) Upload the consent form required to use the Aadhaar number. Click on the search button to find the beneficiary name, PMAY ID, and priority. Click on ‘'Select to Register’'. The beneficiary details will be automatically generated and displayed. The remaining beneficiary details can now be filled in, such as ownership type, relation, Aadhaar number, etc. Upload the consent form required to use the Aadhaar number on behalf of the beneficiary In the next section, add the beneficiary account details in the required fields, such as beneficiary name, bank account number, etc. If the beneficiary wants to avail a loan, select ‘'Yes’' and enter the required loan amount. In the next section, enter the MGNREGA job card number and Swachh Bharat Mission (SBM) number of the beneficiary The next section will be filled in by the concerned office.",
+    "tags": [
+      "Rural Development",
+      "Housing",
+      "Loan",
+      "Financial Assistance"
+    ]
+  },
+  {
+    "scheme_id": "daay",
+    "scheme_name": "Dr. Ambedkar Awas Yojana",
+    "category": [
+      "Housing & Shelter"
+    ],
+    "category_display": [
+      "Housing"
+    ],
+    "level": "state",
+    "state": "Gujarat",
+    "benefit": "Under the scheme, individuals belonging to the scheduled caste category are provided with ₹1,20,000/- assistance for the construction of houses in both urban and rural areas. The assistance will be paid in three instalments, first instalment is ₹40,000/- (with order of administrative sanction), the second instalment is ₹60,000/- (after reaching the lintel level), and the third instalment is ₹20,000/- (On completion of construction, including toilets).",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": 21,
+      "max_age": null,
+      "max_annual_income": 600000,
+      "gender": null,
+      "caste": [
+        "SC"
+      ],
+      "states": [
+        "Gujarat"
+      ],
+      "domicile": null,
+      "occupation": null,
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": null
+    },
+    "unverified_criteria": [
+      "Applicant or any family member must not already own a residential home or have their own plot for residence",
+      "Applicant or family must not have previously received benefits under any other government housing scheme",
+      "Construction of house must be completed within 2 years of first instalment",
+      "Beneficiary must construct a toilet (mandatory condition for assistance)"
+    ],
+    "missing_information": [
+      "max_age: not stated",
+      "gender: not mentioned",
+      "domicile: separate rural/urban upper limits mentioned but both ₹6,00,000 — no eligibility distinction by domicile",
+      "disability_required: not mentioned",
+      "bpl_required: 'below poverty line' mentioned descriptively but not as a hard eligibility gate",
+      "marital_status: not mentioned",
+      "occupation: not mentioned"
+    ],
+    "required_documents": "Passport-size Photograph Aadhaar Card of the applicant Caste Certificate issued by the competent authority Ration card of the applicant Proof of annual income Proof of Residence (Any one of Electricity Bill/Licence/Lease Agreement/Electoral Card/Ration Card) Proof of land ownership/document/title deed/certificate deed (as applicable) Copy of first page of Bank Passbook/Canceler Check (in applicant's name) Proof of death of the husband (if widow), A copy of the map showing the area of the land on which the house is to be constructed Election Identity Card House construction certificate Self-Declaration Photo of open plot/ dilapidated house where the house is to be constructed Any other documents as required",
+    "application_method": "Step 01: The eligible applicant may visit the e-Samaj Kalyan Portal: https://esamajkalyan.gujarat.gov.in/ Step 02: On the home page, under the tab ‘Citizen Login’, click on New User ‘ Please Register Here ’. Step 03 : Enter your Full Name as per Aadhaar Card, Gender, Date of Birth, Aadhaar Card Number, Email ID, Caste etc. and then click on ‘Register’. Step 04: After successful registration, the applicants can login through their User ID and Password. Step 05: Now, click on ‘User Profile’ to update your profile. Step 06: Fill in all the mandatory information and then click on ‘Update’. Step 07: After updating the profile successfully, select the scheme appearing on the home page; an application form will open. Step 08: Fill in all the mandatory details in the application form and upload all the relevant documents. Step 09: Now agree with the terms & conditions and click on ‘Save Application’. Step 10: Submit the application form and take out the print of the application for future reference. The applicant can note down the application number to track the application status by logging into the portal using their User ID and Password. User Manual",
+    "tags": [
+      "Scheduled Caste",
+      "House",
+      "Awas",
+      "Financial Assistance",
+      "BPL"
+    ]
+  },
+  {
+    "scheme_id": "ab-pmjay",
+    "scheme_name": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana",
+    "category": [
+      "Health & Wellness"
+    ],
+    "category_display": [
+      "Health"
+    ],
+    "level": "central",
+    "state": null,
+    "benefit": "AB PM-JAY provides cashless cover of up to ₹ 5,00,000/- to each eligible family per annum for listed secondary and tertiary care conditions. The cover under the scheme includes all expenses incurred on the following components of the treatment: Medical examination, treatment, and consultation Pre-hospitalization Medicine and medical consumables Non-intensive and intensive care services Diagnostic and laboratory investigations Medical implantation services (where necessary) Accommodation benefits Food services Complications arising during treatment Post-hospitalization follow-up care up to 15 days The benefits of ₹ 5,00,000/- are on a family floater basis which means that it can be used by one or all members of the family. Under AB PM-JAY, there is no cap on family size or the age of members. In addition, pre-existing diseases are covered from the very first day. Any eligible person suffering from any medical condition before being covered by PM-JAY will now be able to get treatment for all those medical conditions as well under this scheme right from the day they are enrolled.",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": null,
+      "max_age": null,
+      "max_annual_income": null,
+      "gender": null,
+      "caste": null,
+      "states": [
+        "any"
+      ],
+      "domicile": null,
+      "occupation": null,
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": null
+    },
+    "unverified_criteria": [
+      "Rural eligibility: family must meet at least one of six SECC deprivation criteria (kutcha house, no adult 16-59, female-headed with no adult male, disabled member with no able-bodied adult, SC/ST household, landless casual labour household)",
+      "Urban eligibility: worker must belong to one of 11 occupational categories (ragpicker, beggar, domestic worker, street vendor, construction worker, sweeper, home-based artisan, transport worker, shop worker, electrician/mechanic, washer-man/chowkidar)",
+      "Automatic inclusion for: destitute/living on alms, manual scavenger households, primitive tribal groups, legally released bonded labour"
+    ],
+    "missing_information": [
+      "min_age: not stated",
+      "max_age: not stated",
+      "max_annual_income: not stated — eligibility is SECC deprivation-criteria based",
+      "gender: not a hard gate",
+      "caste: SC/ST household is one of the six SECC criteria but not the only gate",
+      "domicile: scheme has rural and urban criteria — both are eligible paths",
+      "occupation: urban eligibility is occupation-based but spans 11 categories not reducible to a single occupation value",
+      "disability_required: disability is one of six SECC criteria, not a standalone gate",
+      "bpl_required: not stated formally",
+      "marital_status: not mentioned"
+    ],
+    "required_documents": "1. Age & Identity Proof (Aadhaar Card / PAN Card). 2. Proof of Address. 3. Contact details (Mobile, e-mail). 4. Caste Certificate. 5. Income Certificate. 6. Document Proof of the Current Status of the Family (Joint or Nuclear). 7. Aadhaar Card.",
+    "application_method": "The Arogya Mitra searches the available list of beneficiaries using details such as name, location, ration card number, mobile number, or the RSBY URN of the beneficiary. After this, the beneficiary is searched for in the BIS. The individual is identified and the scanned valid ID documents are then uploaded. To get a PMJAY e-card for themselves and their family, a potential beneficiary needs to visit either a hospital or a Community Service Centre (CSC) for identification and follow the steps mentioned below: Step 1: Potential AB-PMJAY beneficiaries are to submit the PM letter/ RSBY URN/ RC Number/ Mobile Number - The operator (commonly known as the Arogya Mitra) searches the available list of beneficiaries. The operator does this by entering details such as name, location, Ration Card number, mobile number, or even RSBY URN of the beneficiary. Step 2: Search in the BIS Application - The operator searches for the potential beneficiary in the entitled SECC, RSBY, State Health Scheme, Additional Data Collection Drive databases. Step 3: Individual Identification - The identification process is carried out if the name is found in the list. For this, documents like Aadhaar or any government ID and a Ration Card or an alternative family ID are required to validate against the details available in the system. Scanned documents are then uploaded. Step 4: Family Identification - The Arogya Mitra then identifies the family records through the ration card and the scanned documents are then uploaded. The Arogya Mitra then submits the individual and family records to the trust/insurance company for approval. Step 5: Approval or Rejection - The Health insurance company or trust may then approve or recommend rejection for the submitted beneficiaries. The cases that are recommended for rejection will be finally verified for approval or rejection by the State Health Agency (SHA). Step 6: E-card Issuance - On approval by SHA/insurance company/trust, an e-card will be issued to the beneficiary.",
+    "tags": [
+      "Health",
+      "Insurance"
+    ]
+  },
+  {
+    "scheme_id": "gms",
+    "scheme_name": "Goa Mediclaim Scheme",
+    "category": [
+      "Health & Wellness"
+    ],
+    "category_display": [
+      "Health"
+    ],
+    "level": "state",
+    "state": "Goa",
+    "benefit": "The Nature of Sickness along with its Permitted Ceiling Limit for the Super-Specialty Treatment is given below - Continuous Ambulatory Peritoneal Dialysis (CAPD) Treatment: ₹15,000/- per month Dialysis: ₹15,600/- per month @ ₹1,300/- per dialysis for 12 dialysis Plastic Surgery: ₹1,50,000/- Intensive Care Unit (ICU), Neonatal Intensive Care Unit (NICU), Pediatric Intensive Care Unit (PICU), Trauma Care: ₹1,50,000/- Coronary Artery Bypass Grafting (CABG) / Percutaneous Transluminal Coronary Angioplasty (PTCA) (Angiography & Angioplasty) : ₹1,50,000/- Open Heart Surgery (Valve replacement, Mitral Valve Replacement (MVR), Ventricular Septal Defect (VSD), Atrial Septal Defect (ASD): ₹3,00,000/- Kidney Transplantation: ₹3,00,000/- Neuro Surgery: ₹3,00,000/- Radiotherapy / Chemotherapy (Cancer): ₹5,00,000/- Cochlear Implant: ₹1,50,000/- Spastic Child, Cerebral Palsy, Skeletal Deformities: ₹1,50,000/- Bone Marrow Transplant: ₹8,00,000/- *The list of the hospitals recognized under this scheme, and the medical treatment covered under each hospital are provided in the scheme guidelines. *Either the Permitted Ceiling Limit Treatment or the Actual Expense of Treatment, whichever is the least will be considered.",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": null,
+      "max_age": null,
+      "max_annual_income": 150000,
+      "gender": null,
+      "caste": null,
+      "states": [
+        "Goa"
+      ],
+      "domicile": null,
+      "occupation": null,
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": null
+    },
+    "unverified_criteria": [
+      "Applicant must have been residing in Goa for at least 15 years",
+      "Applicant must appear in the voters' list",
+      "Applicant must hold a permanent ration card",
+      "Treatment required must not be available in a Goa government hospital (except NICU, Ventilatory Support, Kidney Dialysis — patient may opt for any empanelled hospital)",
+      "Applicant must suffer from one of the specific listed ailments: dialysis, CAPD, plastic surgery, ICU, NICU, PICU, CABG/PTCA, open heart surgery, kidney transplant, neuro surgery, radiotherapy/chemotherapy, cochlear implant, cerebral palsy, skeletal deformities, bone marrow transplant",
+      "Retired state government employees are exempt from the income criterion"
+    ],
+    "missing_information": [
+      "min_age: not mentioned",
+      "max_age: not mentioned",
+      "gender: not mentioned",
+      "caste: not mentioned — no caste restriction",
+      "domicile: not mentioned",
+      "occupation: not mentioned",
+      "disability_required: not mentioned",
+      "bpl_required: not mentioned",
+      "marital_status: not mentioned"
+    ],
+    "required_documents": "Medical Certificate From a Treating Doctor Either From the Goa Medical College, Bambolim, or Hospicio Hospital, Margao, or Asilo Hospital, Mapusa. Either the Income Certificate in the Prescribed Form ‘B’ From the Concerned Mamlatdar in the Original or Certified Copy of the Pension Payment Order (PPO) (in case the applicant is a Retired State Government Employee) Residence Certificate Mediclaim Certificate From the Medical Superintendent, Goa Medical College, Bambolim Along With Photocopy. Passport Size Recent Photograph of the Patient Declaration Form Photocopy of the Election Card / Ration Card of the Patient. if the Patient is a Minor, a Photocopy of the Election Card of Either Parent. Deen Dayal Swasthya Seva Yojana (DDSSY) Aadhaar Card",
+    "application_method": "The interested individual should apply to the Director of Health Services, Panaji, Goa in the prescribed form , along with the required documents. Officer to Be Contacted: Joint Director of Accounts (Health), Directorate of Health Services, Campal, Panaji, Goa; Ph. No. 0832-2225646, Ext-214. Detail of Office Where the Application to Be Submitted: Mediclaim Cell, S-37, Second Floor, Directorate of Health Services, Campal, Panaji-Goa.",
+    "tags": [
+      "Medicine",
+      "Hospital",
+      "Health",
+      "Patient",
+      "Mediclaim"
+    ]
+  },
+  {
+    "scheme_id": "dayalu",
+    "scheme_name": "Deen Dayal Upadhyaya Antyodaya Parivar Suraksha Yojana (DAYALU)",
+    "category": [
+      "Health & Wellness",
+      "Banking,Financial Services and Insurance"
+    ],
+    "category_display": [
+      "Health",
+      "Financial Services"
+    ],
+    "level": "state",
+    "state": "Haryana",
+    "benefit": "The scheme will provide the below mentioned assistance which would vary depending on the age of the beneficiary: Sl. No. Age Compensation Amount 1 Above 6 years and up to 12 years ₹ 1 lakh 2 Above 12 years and up to 18 years ₹ 2 lakh 3 Above 18 years and up to 25 years ₹ 3 lakh 4 Above 25 years and up to 45 years ₹ 5 lakh 5 Above 45 years and up to 60 years ₹ 3 lakh Note: For beneficiaries enrolled under Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY) & Pradhan Mantri Suraksha Bima Yojana (PMSBY), assistance paid under DAYALU will be adjusted considering the compensation received from PMJJBY or PMSBY: Mode of Disbursement: The assistance amount will be paid directly into the bank account registered in the PPP database or linked to the Aadhaar number of the Head of the family. In case of permanent disability, the assistance amount shall be paid to the beneficiary in his bank account registered in the PPP database or bank account linked to the Aadhaar number. Frequency of Disbursement: One-time financial assistance. Expected Time of Disbursement: The claim must be filed within three months of death or permanent disability.",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": 6,
+      "max_age": 60,
+      "max_annual_income": 180000,
+      "gender": null,
+      "caste": null,
+      "states": [
+        "Haryana"
+      ],
+      "domicile": null,
+      "occupation": null,
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": null
+    },
+    "unverified_criteria": [
+      "Applicant must possess a Family ID / Parivar Pehchaan Patra (PPP) number",
+      "Claim must relate to a death (natural or accidental) or permanent disability (≥ 70% from accident, certified by Medical Authority) — event-triggered, not a standing eligibility criterion",
+      "Scheme is effective from 1st April 2023 — claims for events before this date are not accepted",
+      "Workers registered under HLWB or HBOCW are handled by those boards first; DAYALU pays only if the board rejects the claim"
+    ],
+    "missing_information": [
+      "gender: not mentioned",
+      "caste: not mentioned — no caste restriction",
+      "domicile: not mentioned",
+      "occupation: construction workers and industrial labour mentioned as examples but the scheme is not restricted to them",
+      "disability_required: disability is a triggering event (not a pre-condition for eligibility)",
+      "bpl_required: not mentioned",
+      "marital_status: not mentioned"
+    ],
+    "required_documents": "Family ID/Parivar Pehchan Patra (PPP) Number Bank Account Details (Registered in the PPP database or linked to the Aadhaar number of the Head of the Family) Death Certificate (In case of death) Disability Certificate (In case of permanent disability) Aadhaar Card of the Beneficiary Proof of Enrollment in PMJJBY/PMSBY (If applicable) Any other documents as required",
+    "application_method": "Step 1: Visit the official DAYALU scheme portal. Step 2: Select the Apply Option: Click on \"Apply Scheme\" to begin your application. Step 3: On the registration page, select the scheme and enter your Parivar Pehchan Patra (PPP) number. Register using the OTP sent to your registered mobile number. Step 4: Select the family member who has passed away or is permanently disabled. Step 5: Fill in the necessary information, including Date of Death (if applicable), Registration Number, and Issuing Authority and Attach the relevant death or disability certificate. Step 6: Click \"Apply Scheme\" to complete the application submission. Note: Submit the claim within three months of the death or permanent disability.",
+    "tags": [
+      "DAYALU",
+      "Financial Assistance",
+      "Death",
+      "Permanent Disablity"
+    ]
+  },
+  {
+    "scheme_id": "subhadra",
+    "scheme_name": "SUBHADRA",
+    "category": [
+      "Women and Child"
+    ],
+    "category_display": [
+      "Women & Child"
+    ],
+    "level": "state",
+    "state": "Odisha",
+    "benefit": "SUBHADRA Card: All beneficiaries receive a SUBHADRA card (ATM-cum-debit card) to enhance identity and empowerment. Financial Support: Eligible beneficiaries receive a total of ₹50,000/- over 5 years (₹10,000/- annually between 2024-25 to 2028-29). Digital Transactions Incentive: Top 100 women in each Gram Panchayat/Urban Local Body with the highest number of digital transactions in a year receive an additional ₹500/-.",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": 21,
+      "max_age": 59,
+      "max_annual_income": 250000,
+      "gender": [
+        "female"
+      ],
+      "caste": null,
+      "states": [
+        "Odisha"
+      ],
+      "domicile": null,
+      "occupation": null,
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": null
+    },
+    "unverified_criteria": [
+      "Applicant covered under NFSA/SFSS card qualifies regardless of income — income criterion of ₹2,50,000 applies only to non-NFSA/SFSS applicants (conditional rule, simplified to single income threshold in eligibility_rules)",
+      "Applicant must not be a current/former MP or MLA",
+      "Applicant must not be an Income Tax Payee",
+      "Applicant must not be a regular or contractual government employee",
+      "Applicant must not own a 4-wheeler motor vehicle (tractors and small commercial vehicles exempt)",
+      "Applicant must not be an elected representative in a ULB or PRI (Ward Member/Councillor is exempt)",
+      "Applicant must not already receive government financial assistance ≥ ₹1,500/month"
+    ],
+    "missing_information": [
+      "caste: not mentioned — scheme is universal for women of Odisha",
+      "domicile: not mentioned",
+      "occupation: not mentioned",
+      "disability_required: not mentioned",
+      "bpl_required: NFSA/SFSS card is an alternate eligibility path, not equivalent to a BPL card",
+      "marital_status: not mentioned"
+    ],
+    "required_documents": "Copy of Aadhaar Card. A mobile number linked to Aadhaar, Copy of Bank Account Details (single-holder Aadhaar-enabled and DBT-enabled).",
+    "application_method": "Step 1: The interested applicant should collect the application form from the local Anganwadi Centres, Block Offices, Urban Local Body Offices, Mo Seba Kendras, Common Service Centres, etc. Step 2: In the application form, fill in all the mandatory fields, paste the passport-sized photograph (signed across, if required), and attach copies of all the mandatory documents (self-attest, if required). Step 3: Submit the duly filled and signed application form along with the documents to the submit the same at the nearest Mo Seba Kendra/ Common Service Centre. Step 10: Request a receipt or acknowledgment from the concerned authority to whom the application has been submitted. Ensure that the receipt contains essential details such as the date and time of submission, a unique identification number (if applicable). e-KYC Process: The preferred mode of e-KYC would be through face-authentication whereby beneficiaries can complete the process through the SUBHADRA Mobile application by providing their Aadhaar number.",
+    "tags": [
+      "Women Empowerment",
+      "Financial Support",
+      "Digital Financial Literacy",
+      "DBT"
+    ]
+  },
+  {
+    "scheme_id": "wbrupashree",
+    "scheme_name": "Rupashree Prakalpa",
+    "category": [
+      "Social welfare & Empowerment",
+      "Women and Child"
+    ],
+    "category_display": [
+      "Social Welfare",
+      "Women & Child"
+    ],
+    "level": "state",
+    "state": "West Bengal",
+    "benefit": "The Rupashree Prakalpa Scheme has several benefits for economically disadvantaged families in West Bengal. Here are some of the key benefits of the scheme: Financial Assistance: The scheme provides one-time financial assistance of Rs. 25,000 to eligible families for the marriage of their daughters. This financial assistance can help alleviate the financial burden on families who may struggle to cover the costs associated with a wedding. Dignity: The scheme ensures that girls from economically weaker families can celebrate their wedding with dignity and without the burden of financial constraints. This helps to promote the social status of girls and their families in the state. Encourages Education: The scheme also encourages girls to continue their education by mandating those girls who have received the benefits of the Rupashree Prakalpa Scheme must have completed at least 10th standard or equivalent education. This helps to improve the educational status of girls in the state and promotes gender equality. Easy Application Process: The application process for the scheme is easy, and the forms are available both online and offline. This ensures that eligible families can easily apply for the scheme without facing any bureaucratic hurdles. Timely Assistance: The scheme can be applied for three months before the date of marriage and up to one year after the date of marriage. This ensures that eligible families can receive timely assistance for the wedding expenses of their daughters. Overall, the Rupashree Prakalpa Scheme is an excellent initiative that aims to provide financial assistance to economically disadvantaged families of West Bengal for the marriage of their daughters. The scheme has several benefits, including financial assistance, dignity, encouragement for education, an easy application process, and timely assistance, which can help improve the social status of girls in the state and promote gender equality.",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": 18,
+      "max_age": null,
+      "max_annual_income": 150000,
+      "gender": [
+        "female"
+      ],
+      "caste": null,
+      "states": [
+        "West Bengal"
+      ],
+      "domicile": null,
+      "occupation": null,
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": [
+        "single"
+      ]
+    },
+    "unverified_criteria": [
+      "Proposed groom must have attained the age of 21 years — third-party criterion, not verifiable from applicant's profile",
+      "Applicant must have completed at least 10th standard or equivalent education",
+      "Scheme applies only to families with one or two daughters",
+      "Applicant must have an active sole-holder bank account with IFS and MICR codes",
+      "Application must be submitted at least 30 days before and within 1 year after the marriage date"
+    ],
+    "missing_information": [
+      "max_age: not stated",
+      "caste: not mentioned — no caste restriction",
+      "domicile: not mentioned",
+      "occupation: not mentioned",
+      "disability_required: not mentioned",
+      "bpl_required: not mentioned"
+    ],
+    "required_documents": "Important Link to Download the Documents: http://wbcdwdsw.gov.in/User/rupashree_prakalpa Rupashree form https://wbrupashree.gov.in/admin/searchapplicant_public/User_manual/rp_application_form FAQ : Rupashree Prakalpa https://wbrupashree.gov.in/admin/searchapplicant_public/User_manual/faq_eng SOP for Rupashree Prakalpa https://wbrupashree.gov.in/admin/searchapplicant_public/User_manual/sop_dsrp",
+    "application_method": "Method of applying for the scheme The Scheme’s Application form will be available free-of-cost from the following offices: Office of the Block Development Officer in case the applicant resides in a rural area Office of the Sub-Divisional Officer in case the applicant resides in Municipal area Office of the Commissioner in case the applicant resides in a Corporation area The following documents / certifications must be submitted along with the application form: Proof of applicant’s age: Self-attested photo-copy of any one of the following: Birth Certificate / Voter ID card / PAN Card / Madhyamik Admit card / AADHAR card / Primary School Leaving Certificate Never-married Status: Self-declaration on application form Family income: Self-declaration certified by a Competent Authority Proof of Residence: Self-Declaration certified by a Competent Authority Bank Account: Self-attested photo-copy of page of bank book which provides complete details of the account holder’s name, account no., bank address, IFSC code and other details Proof of proposed marriage: Any one of the following: Marriage Invitation Card / Notice for Registration of Marriage Proof of prospective groom’s age: Photocopy of any one of the following: Birth Certificate / Voter ID card / PAN Card / Madhyamik Admit card / AADHAR card / Primary School Leaving Certificate (attested by prospective spouse) Coloured passport size photographs of the applicant and the prospective groom. The completed Application Form , along with all other necessary documents and certifications must be submittedto the Office of the Block Development Officer, Office of the Sub-Divisional Officer or Office of the Corporation Commission under which the applicant’s residence is located AND must be submitted not less than 30 days and not more than 60 daysbefore the date of the proposed marriage. The application process for the Rupashree Prakalpa Scheme in West Bengal is simple and can be completed online or offline. Here are the steps to apply for the scheme: Collect Required Documents: The first step is to collect all the necessary documents required to apply for the scheme, such as birth certificates, identity proofs, income certificates, and marriage invitation cards or declarations. Fill out the Application Form: The application form can be obtained either online or offline from the nearest office of the Block Development Officer (BDO) or Municipality. The form must be filled out completely and accurately. Attach Required Documents: The application form must be accompanied by all the necessary documents required for the scheme. Submit Application Form: The completed application form along with the necessary documents must be submitted to the nearest office of the Block Development Officer (BDO) or Municipality. Receive Acknowledgment Slip: After submission of the application form, an acknowledgment slip will be issued to the applicant. This slip must be kept safe for future reference. Receive Financial Assistance: If the application is approved, the financial assistance of Rs. 25,000 will be transferred directly to the bank account of the beneficiary. The beneficiary will receive an SMS notification regarding the transfer. Overall, the application process for the Rupashree Prakalpa Scheme is simple and can be completed either online or offline. It is important to ensure that all the necessary documents are submitted along with the application form to avoid any delays or rejection of the application.",
+    "tags": []
+  },
+  {
+    "scheme_id": "mssc",
+    "scheme_name": "Mahila Samman Savings Certificate",
+    "category": [
+      "Banking,Financial Services and Insurance",
+      "Women and Child"
+    ],
+    "category_display": [
+      "Financial Services",
+      "Women & Child"
+    ],
+    "level": "central",
+    "state": null,
+    "benefit": "The scheme provides attractive and secure investment options to all girls and women. The scheme offers an attractive and fixed interest of 7.5% interest compounded quarterly with flexible investment and partial withdrawal options with a maximum ceiling of ₹2,00,000/-. The tenure of the scheme is two years. Interest shall be compounded on a quarterly basis and credited to the account. Note: The interest payable to the account holder in respect of any account opened or deposit made which is not in consonance with the provisions of this Scheme shall be payable at the rate applicable to the Post Office Savings Account.",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": null,
+      "max_age": null,
+      "max_annual_income": null,
+      "gender": [
+        "female"
+      ],
+      "caste": null,
+      "states": [
+        "any"
+      ],
+      "domicile": null,
+      "occupation": null,
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": null
+    },
+    "unverified_criteria": [
+      "Applicant must be an Indian citizen",
+      "Minor girl account can be opened by a guardian on her behalf",
+      "Maximum deposit limit of ₹2,00,000 per account or across all accounts held",
+      "Time gap of at least 3 months required between opening successive accounts"
+    ],
+    "missing_information": [
+      "min_age: no minimum age stated — guardian can open for a minor girl",
+      "max_age: explicitly no upper age limit",
+      "max_annual_income: not mentioned — this is a savings scheme, not means-tested",
+      "caste: not mentioned — no caste restriction",
+      "domicile: not mentioned",
+      "occupation: not mentioned",
+      "disability_required: not mentioned",
+      "bpl_required: not mentioned",
+      "marital_status: not mentioned"
+    ],
+    "required_documents": "1. Passport size photograph 2. Proof of age, i.e. Birth Certificate 3. Aadhaar Card 4. PAN Card 5. Pay-in-Slip along with deposit amount or cheque 6. The following documents are accepted as valid documents for the purpose of identification and address proof: a. Passport b. Driving license c. Voter’s ID card d. Job card issued by NREGA signed by the State Government officer e. Letter issued by the National Population Register containing details of name and address",
+    "application_method": "Application process: Step 01: The applicant can visit the nearest Post Office Branch or a designated bank. Step 02: Collect the applicant form or download it from the official website . Step 03: Fill out the application form and attach all the required documents. Step 04: Fill out the declaration and nomination details. Step 05: Submit the application form with the initial amount of investment/deposit. Step 06: Receive the certificate that serves as proof of investment in the ‘Mahila Samman Savings Certificate’ scheme. Note: An application for opening an account under this Scheme shall be made by a woman for herself, or by the guardian on behalf of a minor girl on or before March 31, 2025. Premature closure of account: 1. The account shall not be closed before maturity except in the following cases, namely:- • on the death of the account holder; • where the post office or the Bank concerned is satisfied, in cases of extreme compassionate grounds such as medical support in life-threatening diseases of the account holder or death of the guardian, that the operation or continuation of the account is causing undue hardship to the account holder, it may, after complete documentation, by order and for reasons to be recorded in writing, allow premature closure of the account. 2. Where an account is prematurely closed under sub-paragraph 1, interest on principal amount shall be payable at the rate applicable to the Scheme for which the account has been held. 3. Premature closure of an account may be permitted, any time after the completion of six months from the date of opening of an Account, for any reason other than provided under sub-paragraph 1, and in which case the balance as stood from time to time in the account shall be eligible only for the interest rate less by 2% than the rate specified in this Scheme. 4. In calculating the maturity value, any amount in fraction of a rupee shall be rounded off to the nearest rupee and for this purpose; any amount of fifty paisa or more shall be treated as one rupee and any amount less than fifty paisa shall be ignored.",
+    "tags": [
+      "Mahila",
+      "Woman",
+      "Girl",
+      "Saving",
+      "Investment"
+    ]
+  },
+  {
+    "scheme_id": "dalit-bandhu",
+    "scheme_name": "Dalit Bandhu",
+    "category": [
+      "Social welfare & Empowerment",
+      "Skills & Employment",
+      "Banking,Financial Services and Insurance",
+      "Business & Entrepreneurship"
+    ],
+    "category_display": [
+      "Social Welfare",
+      "Employment",
+      "Financial Services",
+      "Entrepreneurship"
+    ],
+    "level": "state",
+    "state": "Telangana",
+    "benefit": "The Dalit Bandhu Scheme in Telangana has several benefits for the Scheduled Caste (SC) families who are eligible for the scheme. Here are some of the benefits: Financial assistance: The scheme provides financial assistance of Rs. 10 lakhs to eligible SC families to start their own businesses or entrepreneurial ventures. This grant can be used to purchase equipment, raw materials, and other resources needed to start a business, which can help these families become self-reliant and improve their financial status. There is a one-time capital assistance of Rs.10 lakhs per SC family is provided for all SC families as a 100% grant/subsidy to establish suitable income-generating schemes as per their choice (without bank loan linkage). Employment opportunities: The scheme is expected to create employment opportunities for the beneficiaries as they start their own businesses. This can help to reduce unemployment and poverty among the SC community in Telangana. Promotes entrepreneurship: The scheme is aimed at promoting entrepreneurship among the SC community in Telangana, which can help to create a culture of innovation and self-reliance. By providing financial support and guidance, the scheme encourages SC families to take up entrepreneurship as a viable career option. Reduces economic disparities: The scheme is expected to reduce economic disparities between the SC community and other sections of society by promoting economic development among the marginalized sections of society. This can lead to more inclusive growth and development in the state. Empowers SC families: By providing financial assistance and support to start their own businesses, the scheme empowers SC families to take charge of their own economic development and become self-sufficient. This can help to reduce their dependence on government subsidies and loans and promote a sense of pride and dignity. Moreover, Dalit Bandhu Scheme in Telangana has several benefits for the SC community, including financial assistance, employment opportunities, and the promotion of entrepreneurship. The scheme has the potential to reduce economic disparities and promote inclusive growth in the state.",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": 25,
+      "max_age": 50,
+      "max_annual_income": 250000,
+      "gender": null,
+      "caste": [
+        "SC"
+      ],
+      "states": [
+        "Telangana"
+      ],
+      "domicile": null,
+      "occupation": null,
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": null
+    },
+    "unverified_criteria": [
+      "Applicant must have passed at least the 10th standard",
+      "Applicant must have a viable business plan or entrepreneurial idea",
+      "Family must not own more than 3 acres of agricultural land or more than one residential house",
+      "Applicant must not have previously availed any government loan or subsidy",
+      "Applicant must contribute 10% of the project cost",
+      "Applicant must not have a criminal record or conviction",
+      "Applicant must possess an Aadhaar card"
+    ],
+    "missing_information": [
+      "gender: not mentioned — no gender restriction",
+      "domicile: not mentioned",
+      "occupation: applicant is expected to start a business; no specific prior occupation requirement stated",
+      "disability_required: not mentioned",
+      "bpl_required: not mentioned as a formal criterion",
+      "marital_status: not mentioned"
+    ],
+    "required_documents": "• Caste certificate • Bank account details • Valid mobile number • Aadhar card • Voter ID card • Residential proof",
+    "application_method": "The application process for the Dalit Bandhu scheme in Telangana is as follows: Eligible applicants can obtain the application form from the website of the Telangana State Scheduled Castes Development Corporation (TSSCDC). The application form must be duly filled in and submitted along with the required documents to the TSSCDC office in the applicant's district. The required documents include proof of identity, proof of residence, proof of age, proof of income, proof of educational qualifications, a viable business plan or entrepreneurial idea, and a bank account number. Once the application is received and verified, the TSSCDC will conduct a feasibility study of the proposed business or entrepreneurial venture. The TSSCDC will then approve the grant and disburse the funds directly to the applicant's bank account. The applicant will be required to contribute 10% of the project cost, and the grant will cover the remaining 90%. The applicant will also be required to undergo training in financial management, entrepreneurship, and other relevant skills. The applicant will be required to submit regular progress reports to the TSSCDC, and the performance of the business or entrepreneurial venture will be monitored. The application process for the Dalit Bandhu scheme is designed to be transparent and efficient, with a focus on ensuring that the benefits of the scheme reach the intended beneficiaries. By providing financial assistance and support to eligible SC families to start their own businesses or entrepreneurial ventures, the government aims to reduce economic disparities and promote inclusive growth in the state. Based on the information available so far, it is likely that the application process will also involve the following steps: Eligible Dalit families will be identified through a comprehensive survey of their socio-economic conditions. The Telangana Dalit Bandhu Corporation, which is the implementing agency for the scheme, will notify the eligible families and provide them with information on the application process. The eligible families will be required to submit an application, which will include details of their proposed business or venture, as well as any other relevant information. The applications will be reviewed and processed by the Corporation, which will provide financial assistance in a phased manner to the approved beneficiaries. The beneficiaries will also receive capacity-building and training programs, as well as support for marketing and access to credit. It is important to note that the exact details of the application process will be communicated by TSSCDC, and the application process may be subject to change. Visit the Website for more details - https://dalitbandhu.telangana.gov.in/Home/Index",
+    "tags": [
+      "Dalit Bandhu Scheme",
+      "Telangana Dalit Bandhu",
+      "Scheduled Caste",
+      "Direct Benefit Transfer",
+      "Economic Development",
+      "Reduce Poverty And Promote Entrepreneurship",
+      "Social Welfare"
+    ]
+  },
+  {
+    "scheme_id": "ysrrb",
+    "scheme_name": "YSR Rythu Bharosa",
+    "category": [
+      "Agriculture,Rural & Environment"
+    ],
+    "category_display": [
+      "Agriculture"
+    ],
+    "level": "state",
+    "state": "Andhra Pradesh",
+    "benefit": "1. The Landholder farmer families who collectively own cultivable land irrespective of the size of land holdings will be provided a benefit of ₹ 13,500/- per annum. Of this, ₹ 7,500 will be provided by the state government and ₹ 6,000 will be provided by the central government under Pradhan Mantri Kisan Samman Nidhi. The existing validated land ownership database will be used for the identification of beneficiaries under this category of the Scheme. 2. The benefit of ₹ 13,500/- will be extended to the eligible land owner farmer in 3 installments as detailed below - 1st instalment @ ₹ 7,500/- during the month of May (including ₹ 2,000/- from PM-KISAN) 2nd instalment @ ₹ 4,000/- during the month of October (including ₹ 2,000/- from PM-KISAN) 3rd instalment @ ₹ 2,000/- during the month of January (Exclusively of PM-KISAN scheme) 3. Financial assistance will also be provided to landless cultivators belonging to Schedule Caste (SC), Schedule Tribe (ST), Backward Class (BC), and Minority categories in the State @ ₹ 13,500/- per year from the Budget allocation of the Government of Andhra Pradesh. 4. For Landless Tenant farmers including ROFR Cultivators, the benefit of Rs.13,500/- will be extended in 3 instalments from the State Government budget as detailed below - 1st instalment @ ₹ 7,500/- during the month of May 2nd instalment @ ₹ 4,000/- during the month of October 3rd instalment @ ₹ 2,000/- during the month of January 5. The government will pay crop insurance premiums on behalf of farmers. 6. Interest-free Crop loans to be provided to farmers. Free bore wells are to be provided to farmers. 7. Nine hours of free electricity during day time for agricultural purposes. 8. Aquaculture farmers to get electricity @ ₹ 1.50 per unit. 9. ₹ 3000 crores corpus fund allotted to price stabilization. Rates are to be declared before crop sowing. Farmers are to be assured Minimum support price. 10. ₹ 4000 crores allotted for the Natural disaster Relief fund. 11. Every constituency is to be provided with cold storage, and go-downs. Food processing units are to be established where necessary. 12. The cooperative sector will be revived during the first year. Every dairy farmer who participates in a cooperative dairy from the second year onwards gets an ₹ 4 bonus per liter. 13. Toll Tax and Road Tax to be waived off for Agriculture Tractors. 14. ₹ 7,00,000 YSR Bima to be provided to the family of the farmer for accidental death or suicide. An act will be passed in the assembly to ensure the amount does not land into the hands of the loaner and the government will stand by the deceased farmer's family. Methodology for calculation of benefit (Land Owner Farmer Families): • The Department of Real Time Governance takes the landholder families as per Webland data of the Revenue department, as it is the authorized data for the land ownership system in the Government of Andhra Pradesh. Purification and Rectification of errors in wetland data will be taken up by the Revenue Department in coordination with the Agriculture Department. • Joint Verification and confirmation will be done by the Multipurpose Extension Officers (Village Agriculture Assistants)/Agricultural Extension Officers a.nd Village Revenue Officers at the Village level, which in turn will be monitored by the Mandal Agricultural Officer and Tahsildars at Mandal Level, by Sub Divisional Assistant Director of Agriculture and Revenue Divisional Officers at Divisional Level, and final confirmation will be done by the District Collector assisted by JDA, prior to uploading of data to RTGS. • 5% random verification at the mandal level and 2% verification at the Divisional level to be taken up on the verification process. One Deputy Collector rank Officer has to be designated for the Supervision of the entire process for each Assembly Constituency. • Department of RTGS shall play the role of System Integrator (SI) in integrating different data sources viz., wetland, Households (families) data from Praja Sadhikara Survey, CFMS for data relating to Government employees, Pensioners, Income tax, etc as per exclusion parameters.",
+    "official_website": null,
+    "eligibility_rules": {
+      "min_age": null,
+      "max_age": null,
+      "max_annual_income": null,
+      "gender": null,
+      "caste": null,
+      "states": [
+        "Andhra Pradesh"
+      ],
+      "domicile": null,
+      "occupation": [
+        "farmer"
+      ],
+      "disability_required": null,
+      "bpl_required": null,
+      "marital_status": null
+    },
+    "unverified_criteria": [
+      "Land owner farmer: must own cultivable land as recorded in land records",
+      "Landless tenant farmer: must have a lease agreement for minimum cultivable area (1.0 acre for general crops; 0.5 acre for vegetables/flowers; 0.1 acre for Betel Vine)",
+      "Tenant farmer must not own any agricultural/horticulture/sericulture land",
+      "In case of joint holdings, benefit goes to the family member with the highest land quantum",
+      "Only one tenant/cultivator per land-owner family receives benefits; SC/ST/BC/Minority tenants are prioritised over general category tenants"
+    ],
+    "missing_information": [
+      "min_age: not stated",
+      "max_age: not stated",
+      "max_annual_income: not stated",
+      "gender: not mentioned — land-record holder (any gender) receives benefit",
+      "caste: not a hard gate; SC/ST/BC/Minority tenants receive priority, not exclusivity",
+      "domicile: not stated explicitly; agriculture implies rural",
+      "disability_required: not mentioned",
+      "bpl_required: not mentioned",
+      "marital_status: not mentioned"
+    ],
+    "required_documents": "Aadhaar Number Proof of Residence Domicile Certificate Caste Certificate (if applicable) Ration Card Income Certificate / Proof of Income Proof of Agricultural Land (if applicable) Bank Account Details",
+    "application_method": "1. The selection of the candidate will be done by the newly selected village volunteers. 2. The information will collect by them and sent to the revenue officials. 3. The officials will then prepare a list of beneficiaries. 4. This list will be submitted to the government. 5. Finally, the district-wise beneficiary list will start to show on the official website. To check if your name is on the list, Step 1: Visit: https://ysrrythubharosa.ap.gov.in/RBApp/index.html Step 2: Log in using your e-Karshak username and password. The beneficiary list will be displayed on the page. Step 3: Enter your \"Katha Number\" in the search box. The details will be displayed such as name, father's name, the Katha number, village name, district name, Mandal name, etc.",
+    "tags": [
+      "Agriculture",
+      "Financial Assistance",
+      "Farmer"
+    ]
+  }
+]
