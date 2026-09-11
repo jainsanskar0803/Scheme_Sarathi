@@ -1,0 +1,15 @@
+frontend/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+.next/
+node_modules/
+.git/
+tests/
+scripts/
+sql/
+*.log
+.vercel/
