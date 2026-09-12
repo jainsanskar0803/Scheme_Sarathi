@@ -50,6 +50,31 @@ export type Translations = {
   notVisible: string; backToSchemeDetailsBtn: string
   noDocListTitle: string; noDocListBody: string; backToResults: string
   typeMatchNote: string; detected: string; verified: string; matched: string
+  // ── Scheme detail page ───────────────────────────────────────────────────
+  schemeNotFound: string; schemeNotFoundBody: string; returnToResults: string
+  backResultsHeader: string
+  stateGovt: string; centralGovt: string; availableIn: string
+  eligibilityAssessment: string
+  conditionsSummary: (pass: number, total: number) => string
+  conditionFailed: (n: number) => string; conditionClose: (n: number) => string; conditionUnknown: (n: number) => string
+  noConditions: string
+  additionalCriteria: string; additionalCriteriaNote: string
+  completeYourProfile: string; completeProfileNote: string; completeProfileLink: string
+  requiredDocuments: string; checkMyDocuments: string
+  howToApply: string; officialWebsite: string
+  sourceLabel: string; schemeIdLabel: string
+  backToResultsBtn: string
+  requirement: string; yourValueLabel: string; notProvided: string
+  failReason: string; notInProfile: string; addIt: string
+  statusPass: string; statusFail: string; statusClose: string; statusUnknown: string
+  verdictEligible: string; verdictNearMiss: string; verdictNeedInfo: string; verdictIneligible: string
+  verdictHeadlineEligible: (total: number) => string
+  verdictHeadlineEligibleZero: string
+  verdictHeadlineNearMiss: (n: number) => string
+  verdictHeadlineIneligible: (n: number) => string
+  verdictHeadlineInsufficient: string
+  verdictDefault: string
+  ofConditions: (pass: number, total: number) => string
 }
 
 const en: Translations = {
@@ -184,6 +209,53 @@ const en: Translations = {
   detected: 'Detected:',
   verified: 'verified',
   matched: 'matched',
+  // ── Scheme detail page ───────────────────────────────────────────────────
+  schemeNotFound: 'Scheme not found',
+  schemeNotFoundBody: 'This scheme is not in your current session results. Return to results and try again.',
+  returnToResults: '← Return to Results',
+  backResultsHeader: '← Results',
+  stateGovt: 'State',
+  centralGovt: 'Central',
+  availableIn: 'Available in',
+  eligibilityAssessment: 'Eligibility Assessment',
+  conditionsSummary: (pass, total) => `${pass} of ${total} condition${total !== 1 ? 's' : ''} checked`,
+  conditionFailed: (n) => `${n} failed`,
+  conditionClose: (n) => `${n} close`,
+  conditionUnknown: (n) => `${n} unknown`,
+  noConditions: 'No structured conditions were extracted for this scheme.',
+  additionalCriteria: 'Additional Eligibility Criteria',
+  additionalCriteriaNote: 'These criteria were not automatically verified. Check them directly with the scheme authority.',
+  completeYourProfile: 'Complete Your Profile',
+  completeProfileNote: 'Add these details to your profile for a more accurate eligibility check:',
+  completeProfileLink: 'Complete your profile →',
+  requiredDocuments: 'Required Documents',
+  checkMyDocuments: 'Check My Documents',
+  howToApply: 'How to Apply',
+  officialWebsite: 'Official Website',
+  sourceLabel: 'Source',
+  schemeIdLabel: 'Scheme ID:',
+  backToResultsBtn: '← Back to Results',
+  requirement: 'Requirement:',
+  yourValueLabel: 'Your value:',
+  notProvided: 'Not provided',
+  failReason: 'Your value does not meet this requirement.',
+  notInProfile: 'Not in your profile yet.',
+  addIt: 'Add it →',
+  statusPass: '✓  PASS',
+  statusFail: '✗  FAIL',
+  statusClose: '~  CLOSE',
+  statusUnknown: '?  UNKNOWN',
+  verdictEligible: '✓ Eligible',
+  verdictNearMiss: '~ Near Miss',
+  verdictNeedInfo: '? Need Info',
+  verdictIneligible: '✗ Not Eligible',
+  verdictHeadlineEligible: (total) => `You qualify — all ${total} checked condition${total !== 1 ? 's' : ''} met`,
+  verdictHeadlineEligibleZero: 'You qualify for this scheme',
+  verdictHeadlineNearMiss: (n) => n === 1 ? 'Almost eligible — 1 condition is close but not met' : `Almost eligible — ${n} conditions are close but not met`,
+  verdictHeadlineIneligible: (n) => n === 1 ? 'Not eligible — 1 condition failed' : `Not eligible — ${n} conditions failed`,
+  verdictHeadlineInsufficient: 'Cannot determine eligibility — profile incomplete',
+  verdictDefault: 'Eligibility result',
+  ofConditions: (pass, total) => `${pass} of ${total}`,
 }
 
 const hi: Translations = {
@@ -318,6 +390,53 @@ const hi: Translations = {
   detected: 'पहचाना:',
   verified: 'सत्यापित',
   matched: 'मिलान',
+  // ── Scheme detail page ───────────────────────────────────────────────────
+  schemeNotFound: 'योजना नहीं मिली',
+  schemeNotFoundBody: 'यह योजना आपके वर्तमान सत्र के परिणामों में नहीं है। परिणामों पर वापस जाएं और पुनः प्रयास करें।',
+  returnToResults: '← परिणामों पर वापस',
+  backResultsHeader: '← परिणाम',
+  stateGovt: 'राज्य',
+  centralGovt: 'केंद्रीय',
+  availableIn: 'में उपलब्ध',
+  eligibilityAssessment: 'पात्रता मूल्यांकन',
+  conditionsSummary: (pass, total) => `${total} में से ${pass} शर्त${total !== 1 ? 'ें' : ''} जांची`,
+  conditionFailed: (n) => `${n} विफल`,
+  conditionClose: (n) => `${n} करीब`,
+  conditionUnknown: (n) => `${n} अज्ञात`,
+  noConditions: 'इस योजना के लिए कोई संरचित शर्तें नहीं निकाली गईं।',
+  additionalCriteria: 'अतिरिक्त पात्रता मानदंड',
+  additionalCriteriaNote: 'इन मानदंडों की स्वचालित रूप से जांच नहीं की गई। इन्हें सीधे योजना प्राधिकरण से जांचें।',
+  completeYourProfile: 'अपनी प्रोफ़ाइल पूरी करें',
+  completeProfileNote: 'अधिक सटीक पात्रता जांच के लिए इन विवरणों को अपनी प्रोफ़ाइल में जोड़ें:',
+  completeProfileLink: 'प्रोफ़ाइल पूरी करें →',
+  requiredDocuments: 'आवश्यक दस्तावेज़',
+  checkMyDocuments: 'मेरे दस्तावेज़ जांचें',
+  howToApply: 'आवेदन कैसे करें',
+  officialWebsite: 'आधिकारिक वेबसाइट',
+  sourceLabel: 'स्रोत',
+  schemeIdLabel: 'योजना ID:',
+  backToResultsBtn: '← परिणामों पर वापस',
+  requirement: 'आवश्यकता:',
+  yourValueLabel: 'आपका मान:',
+  notProvided: 'नहीं दिया गया',
+  failReason: 'आपका मान इस आवश्यकता को पूरा नहीं करता।',
+  notInProfile: 'अभी तक आपकी प्रोफ़ाइल में नहीं।',
+  addIt: 'जोड़ें →',
+  statusPass: '✓  पास',
+  statusFail: '✗  विफल',
+  statusClose: '~  करीब',
+  statusUnknown: '?  अज्ञात',
+  verdictEligible: '✓ पात्र',
+  verdictNearMiss: '~ लगभग पात्र',
+  verdictNeedInfo: '? जानकारी चाहिए',
+  verdictIneligible: '✗ अपात्र',
+  verdictHeadlineEligible: (total) => `आप योग्य हैं — सभी ${total} शर्त${total !== 1 ? 'ें' : ''} पूरी हुईं`,
+  verdictHeadlineEligibleZero: 'आप इस योजना के लिए योग्य हैं',
+  verdictHeadlineNearMiss: (n) => n === 1 ? 'लगभग पात्र — 1 शर्त करीब है पर पूरी नहीं' : `लगभग पात्र — ${n} शर्तें करीब हैं पर पूरी नहीं`,
+  verdictHeadlineIneligible: (n) => n === 1 ? 'अपात्र — 1 शर्त विफल' : `अपात्र — ${n} शर्तें विफल`,
+  verdictHeadlineInsufficient: 'पात्रता निर्धारित नहीं हो सकती — प्रोफ़ाइल अधूरी है',
+  verdictDefault: 'पात्रता परिणाम',
+  ofConditions: (pass, total) => `${total} में से ${pass}`,
 }
 
 export const translations: Record<Lang, Translations> = { en, hi }

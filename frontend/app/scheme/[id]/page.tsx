@@ -4,20 +4,26 @@ import { useEffect, useState, Suspense } from 'react'
 import { useParams, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import type { SchemeMatchResult, MatchResponse, ConditionExplanation, ConditionStatus, Verdict } from '@/lib/types'
+import { useLanguage } from '@/lib/use-language'
+import { LangToggle } from '@/lib/lang-toggle'
+import { t } from '@/lib/translations'
+import type { Lang } from '@/lib/translations'
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
 export default function SchemeDetailPage() {
+  const { lang, toggle } = useLanguage()
   return (
     <Suspense fallback={<Spinner />}>
-      <SchemeDetailContent />
+      <SchemeDetailContent lang={lang} onToggleLang={toggle} />
     </Suspense>
   )
 }
 
 // ─── Data loader ──────────────────────────────────────────────────────────────
 
-function SchemeDetailContent() {
+function SchemeDetailContent({ lang, onToggleLang }: { lang: Lang; onToggleLang: () => void }) {
+  const T = t(lang)
   const params = useParams()
   const searchParams = useSearchParams()
   const schemeId = params.id as string
@@ -48,15 +54,13 @@ function SchemeDetailContent() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
         <div className="bg-white border border-gray-200 rounded-2xl px-8 py-10 text-center max-w-md shadow-sm">
           <div className="text-5xl mb-4">🔍</div>
-          <h2 className="text-gray-800 font-semibold text-lg mb-2">Scheme not found</h2>
-          <p className="text-gray-500 text-sm mb-6">
-            This scheme is not in your current session results. Return to results and try again.
-          </p>
+          <h2 className="text-gray-800 font-semibold text-lg mb-2">{T.schemeNotFound}</h2>
+          <p className="text-gray-500 text-sm mb-6">{T.schemeNotFoundBody}</p>
           <Link
             href={sessionId ? `/results?session=${sessionId}` : '/'}
             className="inline-flex items-center gap-2 bg-indigo-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors"
           >
-            ← Return to Results
+            {T.returnToResults}
           </Link>
         </div>
       </div>
@@ -65,26 +69,36 @@ function SchemeDetailContent() {
 
   if (!scheme) return <Spinner />
 
-  return <SchemeDetail scheme={scheme} sessionId={sessionId} />
+  return <SchemeDetail scheme={scheme} sessionId={sessionId} lang={lang} onToggleLang={onToggleLang} />
 }
 
 // ─── Main detail view ─────────────────────────────────────────────────────────
 
-function SchemeDetail({ scheme, sessionId }: { scheme: SchemeMatchResult; sessionId: string }) {
+function SchemeDetail({
+  scheme,
+  sessionId,
+  lang,
+  onToggleLang,
+}: {
+  scheme: SchemeMatchResult
+  sessionId: string
+  lang: Lang
+  onToggleLang: () => void
+}) {
+  const T = t(lang)
   const verdict = scheme.verdict
   const isStateScheme = scheme.source.startsWith('State Government')
-  const stateName = isStateScheme ? scheme.source.replace('State Government – ', '').replace('State Government', '') : null
+  const stateName = isStateScheme
+    ? scheme.source.replace('State Government – ', '').replace('State Government', '').trim()
+    : null
 
-  // Deduplicate conditions: same field + same requirement = same row
   const conditions = dedupeConditions(scheme.explanation)
-
   const passCount = conditions.filter((c) => c.status === 'PASS').length
   const failCount = conditions.filter((c) => c.status === 'FAIL').length
   const nearMissCount = conditions.filter((c) => c.status === 'NEAR_MISS').length
   const notProvidedCount = conditions.filter((c) => c.status === 'NOT_PROVIDED').length
   const totalChecked = conditions.length
 
-  // Parse documents and application steps
   const docLines = parseDocuments(scheme.required_documents)
   const appSteps = parseApplicationSteps(scheme.application_method)
   const hasWebsite = scheme.official_website && scheme.official_website !== 'None' && scheme.official_website !== 'null'
@@ -98,10 +112,11 @@ function SchemeDetail({ scheme, sessionId }: { scheme: SchemeMatchResult; sessio
             href={sessionId ? `/results?session=${sessionId}` : '/'}
             className="flex-shrink-0 text-indigo-600 hover:text-indigo-800 text-sm font-medium flex items-center gap-1"
           >
-            ← Results
+            {T.backResultsHeader}
           </Link>
           <span className="text-gray-300 flex-shrink-0">|</span>
-          <span className="text-gray-600 text-sm truncate">{scheme.scheme_name}</span>
+          <span className="text-gray-600 text-sm truncate flex-1">{scheme.scheme_name}</span>
+          <LangToggle lang={lang} onToggle={onToggleLang} />
         </div>
       </header>
 
@@ -111,9 +126,9 @@ function SchemeDetail({ scheme, sessionId }: { scheme: SchemeMatchResult; sessio
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 space-y-4">
           {/* Badges row */}
           <div className="flex flex-wrap items-center gap-2">
-            <VerdictBadge verdict={verdict} />
+            <VerdictBadge verdict={verdict} lang={lang} />
             <span className="text-xs bg-indigo-50 text-indigo-600 border border-indigo-100 px-2.5 py-1 rounded-full font-medium">
-              {isStateScheme ? 'State' : 'Central'} Government
+              {isStateScheme ? T.stateGovt : T.centralGovt} Government
             </span>
             {scheme.category_display.map((c) => (
               <span key={c} className="text-xs bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full">
@@ -129,14 +144,14 @@ function SchemeDetail({ scheme, sessionId }: { scheme: SchemeMatchResult; sessio
           {stateName && (
             <div className="flex items-center gap-1.5 text-sm text-gray-500">
               <span>📍</span>
-              <span>Available in <span className="font-medium text-gray-700">{stateName}</span></span>
+              <span>{T.availableIn} <span className="font-medium text-gray-700">{stateName}</span></span>
             </div>
           )}
 
           {/* Benefit */}
           {scheme.benefit && (
             <div className={`rounded-xl p-4 border ${benefitStyle(verdict)}`}>
-              <p className={`text-xs font-bold uppercase tracking-wide mb-1 ${benefitLabelStyle(verdict)}`}>Benefit</p>
+              <p className={`text-xs font-bold uppercase tracking-wide mb-1 ${benefitLabelStyle(verdict)}`}>{T.benefit}</p>
               <p className={`text-sm leading-relaxed ${benefitTextStyle(verdict)}`}>{scheme.benefit}</p>
             </div>
           )}
@@ -149,13 +164,15 @@ function SchemeDetail({ scheme, sessionId }: { scheme: SchemeMatchResult; sessio
             <div className="flex items-start gap-3">
               <span className="text-2xl flex-shrink-0 mt-0.5">{verdictIcon(verdict)}</span>
               <div>
-                <p className={`font-bold text-base ${verdictTitleColor(verdict)}`}>{verdictHeadline(verdict, passCount, totalChecked, failCount, nearMissCount)}</p>
+                <p className={`font-bold text-base ${verdictTitleColor(verdict)}`}>
+                  {getVerdictHeadline(T, verdict, passCount, totalChecked, failCount, nearMissCount)}
+                </p>
                 {totalChecked > 0 && (
                   <p className="text-sm text-gray-500 mt-0.5">
-                    {passCount} of {totalChecked} condition{totalChecked !== 1 ? 's' : ''} checked
-                    {failCount > 0 && <span className="text-red-500"> · {failCount} failed</span>}
-                    {nearMissCount > 0 && <span className="text-amber-500"> · {nearMissCount} close</span>}
-                    {notProvidedCount > 0 && <span className="text-gray-400"> · {notProvidedCount} unknown</span>}
+                    {T.conditionsSummary(passCount, totalChecked)}
+                    {failCount > 0 && <span className="text-red-500"> · {T.conditionFailed(failCount)}</span>}
+                    {nearMissCount > 0 && <span className="text-amber-500"> · {T.conditionClose(nearMissCount)}</span>}
+                    {notProvidedCount > 0 && <span className="text-gray-400"> · {T.conditionUnknown(notProvidedCount)}</span>}
                   </p>
                 )}
               </div>
@@ -166,23 +183,23 @@ function SchemeDetail({ scheme, sessionId }: { scheme: SchemeMatchResult; sessio
           {conditions.length > 0 && (
             <div className="divide-y divide-gray-100">
               {conditions.map((cond, i) => (
-                <ConditionRow key={`${cond.field}-${cond.requirement}-${i}`} condition={cond} sessionId={sessionId} />
+                <ConditionRow key={`${cond.field}-${cond.requirement}-${i}`} condition={cond} sessionId={sessionId} lang={lang} />
               ))}
             </div>
           )}
 
           {conditions.length === 0 && (
             <div className="px-5 py-6 text-center text-gray-400 text-sm">
-              No structured conditions were extracted for this scheme.
+              {T.noConditions}
             </div>
           )}
         </div>
 
         {/* ── Additional Criteria ───────────────────────────────────────────── */}
         {scheme.unverified_criteria && scheme.unverified_criteria.length > 0 && (
-          <Section title="Additional Eligibility Criteria" icon="⚠️" accent="amber">
+          <Section title={T.additionalCriteria} icon="⚠️" accent="amber">
             <p className="text-xs text-amber-700 bg-amber-50 border border-amber-100 rounded-lg px-3 py-2 mb-3">
-              These criteria were not automatically verified. Check them directly with the scheme authority.
+              {T.additionalCriteriaNote}
             </p>
             <ul className="space-y-2">
               {scheme.unverified_criteria.map((c, i) => (
@@ -197,10 +214,8 @@ function SchemeDetail({ scheme, sessionId }: { scheme: SchemeMatchResult; sessio
 
         {/* ── Missing Profile Info ──────────────────────────────────────────── */}
         {scheme.missing_information && scheme.missing_information.length > 0 && notProvidedCount > 0 && (
-          <Section title="Complete Your Profile" icon="👤" accent="indigo">
-            <p className="text-sm text-gray-600 mb-3">
-              Add these details to your profile for a more accurate eligibility check:
-            </p>
+          <Section title={T.completeYourProfile} icon="👤" accent="indigo">
+            <p className="text-sm text-gray-600 mb-3">{T.completeProfileNote}</p>
             <div className="flex flex-wrap gap-2 mb-4">
               {conditions
                 .filter((c) => c.status === 'NOT_PROVIDED')
@@ -214,14 +229,14 @@ function SchemeDetail({ scheme, sessionId }: { scheme: SchemeMatchResult; sessio
               href={sessionId ? `/interview?session=${sessionId}` : '/interview'}
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-800"
             >
-              Complete your profile →
+              {T.completeProfileLink}
             </Link>
           </Section>
         )}
 
         {/* ── Required Documents ────────────────────────────────────────────── */}
         {docLines.length > 0 && (
-          <Section title="Required Documents" icon="📄">
+          <Section title={T.requiredDocuments} icon="📄">
             <ul className="space-y-2 mb-4">
               {docLines.map((doc, i) => (
                 <li key={i} className="flex items-start gap-2.5 text-sm text-gray-700">
@@ -235,14 +250,14 @@ function SchemeDetail({ scheme, sessionId }: { scheme: SchemeMatchResult; sessio
               className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-colors"
             >
               <span>📋</span>
-              Check My Documents
+              {T.checkMyDocuments}
             </Link>
           </Section>
         )}
 
         {/* ── How to Apply ──────────────────────────────────────────────────── */}
         {appSteps.length > 0 && (
-          <Section title="How to Apply" icon="📝">
+          <Section title={T.howToApply} icon="📝">
             {appSteps.length === 1 ? (
               <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">{appSteps[0]}</p>
             ) : (
@@ -262,7 +277,7 @@ function SchemeDetail({ scheme, sessionId }: { scheme: SchemeMatchResult; sessio
 
         {/* ── Official Website ──────────────────────────────────────────────── */}
         {hasWebsite && (
-          <Section title="Official Website" icon="🌐">
+          <Section title={T.officialWebsite} icon="🌐">
             <a
               href={scheme.official_website!}
               target="_blank"
@@ -279,9 +294,9 @@ function SchemeDetail({ scheme, sessionId }: { scheme: SchemeMatchResult; sessio
 
         {/* ── Source ───────────────────────────────────────────────────────── */}
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm px-5 py-4">
-          <p className="text-xs text-gray-400 font-medium uppercase tracking-wide mb-1">Source</p>
+          <p className="text-xs text-gray-400 font-medium uppercase tracking-wide mb-1">{T.sourceLabel}</p>
           <p className="text-sm text-gray-700 font-medium">{scheme.source}</p>
-          <p className="text-xs text-gray-400 mt-1">Scheme ID: {scheme.scheme_id}</p>
+          <p className="text-xs text-gray-400 mt-1">{T.schemeIdLabel} {scheme.scheme_id}</p>
         </div>
 
         {/* ── Back ─────────────────────────────────────────────────────────── */}
@@ -289,7 +304,7 @@ function SchemeDetail({ scheme, sessionId }: { scheme: SchemeMatchResult; sessio
           href={sessionId ? `/results?session=${sessionId}` : '/'}
           className="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-5 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-sm"
         >
-          ← Back to Results
+          {T.backToResultsBtn}
         </Link>
       </main>
     </div>
@@ -298,7 +313,8 @@ function SchemeDetail({ scheme, sessionId }: { scheme: SchemeMatchResult; sessio
 
 // ─── Condition Row ────────────────────────────────────────────────────────────
 
-function ConditionRow({ condition, sessionId }: { condition: ConditionExplanation; sessionId: string }) {
+function ConditionRow({ condition, sessionId, lang }: { condition: ConditionExplanation; sessionId: string; lang: Lang }) {
+  const T = t(lang)
   const { status } = condition
 
   const rowBg: Record<ConditionStatus, string> = {
@@ -320,23 +336,23 @@ function ConditionRow({ condition, sessionId }: { condition: ConditionExplanatio
       {/* Top row: label + status */}
       <div className="flex items-center justify-between gap-2 mb-2">
         <span className="text-sm font-semibold text-gray-800">{condition.label}</span>
-        <StatusBadge status={status} />
+        <StatusBadge status={status} lang={lang} />
       </div>
 
       {/* Requirement + citizen value */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs">
         <div>
-          <span className="text-gray-400 font-medium">Requirement: </span>
+          <span className="text-gray-400 font-medium">{T.requirement} </span>
           <span className="text-gray-700">{condition.requirement}</span>
         </div>
         <div>
-          <span className="text-gray-400 font-medium">Your value: </span>
+          <span className="text-gray-400 font-medium">{T.yourValueLabel} </span>
           {condition.citizen_value_display && condition.citizen_value_display !== 'Not provided' ? (
             <span className={`font-semibold ${status === 'PASS' ? 'text-green-700' : status === 'FAIL' ? 'text-red-700' : status === 'NEAR_MISS' ? 'text-amber-700' : 'text-gray-400'}`}>
               {condition.citizen_value_display}
             </span>
           ) : (
-            <span className="text-gray-400 italic">Not provided</span>
+            <span className="text-gray-400 italic">{T.notProvided}</span>
           )}
         </div>
       </div>
@@ -346,7 +362,7 @@ function ConditionRow({ condition, sessionId }: { condition: ConditionExplanatio
         <div className="mt-2.5 bg-amber-100 border border-amber-200 rounded-lg px-3 py-2 space-y-0.5">
           {condition.gap && (
             <p className="text-xs font-bold text-amber-800">
-              Gap: {condition.gap}
+              {T.gap} {condition.gap}
             </p>
           )}
           {condition.note && condition.note !== condition.gap && (
@@ -359,9 +375,7 @@ function ConditionRow({ condition, sessionId }: { condition: ConditionExplanatio
       {status === 'FAIL' && (
         <div className="mt-2 flex items-center gap-1.5">
           <span className="text-red-400 text-xs">✗</span>
-          <p className="text-xs text-red-600">
-            Your value does not meet this requirement.
-          </p>
+          <p className="text-xs text-red-600">{T.failReason}</p>
         </div>
       )}
 
@@ -370,9 +384,9 @@ function ConditionRow({ condition, sessionId }: { condition: ConditionExplanatio
         <div className="mt-2 flex items-center gap-1.5">
           <span className="text-gray-400 text-xs">?</span>
           <p className="text-xs text-gray-500">
-            Not in your profile yet.{' '}
+            {T.notInProfile}{' '}
             <Link href={sessionId ? `/interview?session=${sessionId}` : '/interview'} className="text-indigo-500 hover:text-indigo-700 underline underline-offset-1">
-              Add it →
+              {T.addIt}
             </Link>
           </p>
         </div>
@@ -412,12 +426,13 @@ function Section({
 
 // ─── Status Badge ─────────────────────────────────────────────────────────────
 
-function StatusBadge({ status }: { status: ConditionStatus }) {
+function StatusBadge({ status, lang }: { status: ConditionStatus; lang: Lang }) {
+  const T = t(lang)
   const cfg: Record<ConditionStatus, { cls: string; label: string }> = {
-    PASS: { cls: 'bg-green-100 text-green-700', label: '✓  PASS' },
-    FAIL: { cls: 'bg-red-100 text-red-700', label: '✗  FAIL' },
-    NEAR_MISS: { cls: 'bg-amber-100 text-amber-700', label: '~  CLOSE' },
-    NOT_PROVIDED: { cls: 'bg-gray-100 text-gray-500', label: '?  UNKNOWN' },
+    PASS:         { cls: 'bg-green-100 text-green-700', label: T.statusPass },
+    FAIL:         { cls: 'bg-red-100 text-red-700',     label: T.statusFail },
+    NEAR_MISS:    { cls: 'bg-amber-100 text-amber-700', label: T.statusClose },
+    NOT_PROVIDED: { cls: 'bg-gray-100 text-gray-500',  label: T.statusUnknown },
   }
   const { cls, label } = cfg[status] ?? { cls: 'bg-gray-100 text-gray-500', label: status }
   return (
@@ -429,12 +444,13 @@ function StatusBadge({ status }: { status: ConditionStatus }) {
 
 // ─── Verdict Badge ────────────────────────────────────────────────────────────
 
-function VerdictBadge({ verdict }: { verdict: Verdict | string }) {
+function VerdictBadge({ verdict, lang }: { verdict: Verdict | string; lang: Lang }) {
+  const T = t(lang)
   const cfg: Record<string, { cls: string; label: string }> = {
-    eligible: { cls: 'bg-green-100 text-green-700 border-green-200', label: '✓ Eligible' },
-    near_miss: { cls: 'bg-amber-100 text-amber-700 border-amber-200', label: '~ Near Miss' },
-    insufficient_information: { cls: 'bg-gray-100 text-gray-600 border-gray-200', label: '? Need Info' },
-    ineligible: { cls: 'bg-red-100 text-red-700 border-red-200', label: '✗ Not Eligible' },
+    eligible:                 { cls: 'bg-green-100 text-green-700 border-green-200',  label: T.verdictEligible },
+    near_miss:                { cls: 'bg-amber-100 text-amber-700 border-amber-200',  label: T.verdictNearMiss },
+    insufficient_information: { cls: 'bg-gray-100 text-gray-600 border-gray-200',    label: T.verdictNeedInfo },
+    ineligible:               { cls: 'bg-red-100 text-red-700 border-red-200',        label: T.verdictIneligible },
   }
   const { cls, label } = cfg[verdict] ?? { cls: 'bg-gray-100 text-gray-500 border-gray-200', label: verdict }
   return (
@@ -457,30 +473,31 @@ function Spinner() {
   )
 }
 
-// ─── Verdict styling helpers ──────────────────────────────────────────────────
+// ─── Verdict helpers ──────────────────────────────────────────────────────────
 
 function verdictIcon(v: string): string {
   return { eligible: '✅', near_miss: '⚡', ineligible: '❌', insufficient_information: '🔍' }[v] ?? '📋'
 }
 
-function verdictHeadline(v: string, pass: number, total: number, fail: number, near: number): string {
+function getVerdictHeadline(
+  T: ReturnType<typeof t>,
+  v: string,
+  pass: number,
+  total: number,
+  fail: number,
+  near: number,
+): string {
   switch (v) {
     case 'eligible':
-      return total > 0
-        ? `You qualify — all ${total} checked condition${total !== 1 ? 's' : ''} met`
-        : 'You qualify for this scheme'
+      return total > 0 ? T.verdictHeadlineEligible(total) : T.verdictHeadlineEligibleZero
     case 'near_miss':
-      return near === 1
-        ? 'Almost eligible — 1 condition is close but not met'
-        : `Almost eligible — ${near} condition${near > 1 ? 's are' : ' is'} close but not met`
+      return T.verdictHeadlineNearMiss(near)
     case 'ineligible':
-      return fail === 1
-        ? 'Not eligible — 1 condition failed'
-        : `Not eligible — ${fail} condition${fail > 1 ? 's' : ''} failed`
+      return T.verdictHeadlineIneligible(fail)
     case 'insufficient_information':
-      return 'Cannot determine eligibility — profile incomplete'
+      return T.verdictHeadlineInsufficient
     default:
-      return 'Eligibility result'
+      return T.verdictDefault
   }
 }
 
@@ -543,35 +560,21 @@ function dedupeConditions(conditions: ConditionExplanation[]): ConditionExplanat
 
 function parseDocuments(raw: string | null | undefined): string[] {
   if (!raw || raw === 'None') return []
-
-  // Try newline split first
   const byNewline = raw.split('\n').map((s) => s.trim()).filter(Boolean)
   if (byNewline.length > 1) return byNewline
-
-  // Try period split (sentences)
   const byPeriod = raw.split('. ').map((s) => s.trim()).filter(Boolean)
-  if (byPeriod.length > 1) return byPeriod.map((s) => s.endsWith('.') ? s : s)
-
-  // Return as single block
+  if (byPeriod.length > 1) return byPeriod
   return [raw.trim()]
 }
 
 function parseApplicationSteps(raw: string | null | undefined): string[] {
   if (!raw || raw === 'None') return []
-
-  // Match "Step N:" or "Step NN:" patterns
   const stepPattern = /Step\s+\d+\s*:/gi
   const parts = raw.split(stepPattern).map((s) => s.trim()).filter(Boolean)
-
   if (parts.length > 1) return parts
-
-  // Try splitting on numbered patterns like "1." at line start
   const numbered = raw.split(/\n\s*\d+\.\s+/).map((s) => s.trim()).filter(Boolean)
   if (numbered.length > 1) return numbered
-
-  // Try newlines
   const byNewline = raw.split('\n').map((s) => s.trim()).filter(Boolean)
   if (byNewline.length > 1) return byNewline
-
   return [raw.trim()]
 }
