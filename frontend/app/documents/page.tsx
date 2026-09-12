@@ -6,20 +6,19 @@ import Link from 'next/link'
 import { verifyDocument } from '@/lib/api'
 import type { VerifyResponse } from '@/lib/api'
 import type { MatchResponse, SchemeMatchResult } from '@/lib/types'
+import { useLanguage } from '@/lib/use-language'
+import { LangToggle } from '@/lib/lang-toggle'
+import { t } from '@/lib/translations'
+import type { Lang } from '@/lib/translations'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-// Status flow:
-//   missing → uploading → rejected (not a doc or wrong type)
-//                       → mismatch (right type, details don't match profile)
-//                       → unverified (right type, details not readable / no profile)
-//                       → confirmed (right type + all verifiable details match)
 type DocStatus = 'missing' | 'uploading' | 'rejected' | 'mismatch' | 'unverified' | 'confirmed'
 
 interface DocItem {
   label: string
   status: DocStatus
-  preview: string | null   // image data URL (null for PDFs or no upload)
+  preview: string | null
   fileName: string | null
   isPdf: boolean
   verifyResult: VerifyResponse | null
@@ -28,16 +27,18 @@ interface DocItem {
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
 export default function DocumentsPage() {
+  const { lang, toggle } = useLanguage()
   return (
     <Suspense fallback={<Spinner />}>
-      <DocumentsContent />
+      <DocumentsContent lang={lang} onToggleLang={toggle} />
     </Suspense>
   )
 }
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 
-function DocumentsContent() {
+function DocumentsContent({ lang, onToggleLang }: { lang: Lang; onToggleLang: () => void }) {
+  const T = t(lang)
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session') || ''
   const schemeId = searchParams.get('scheme') || ''
@@ -84,15 +85,13 @@ function DocumentsContent() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
         <div className="bg-white border border-gray-200 rounded-2xl px-8 py-10 text-center max-w-md shadow-sm">
           <div className="text-5xl mb-4">📄</div>
-          <h2 className="text-gray-800 font-semibold text-lg mb-2">No document list found</h2>
-          <p className="text-gray-500 text-sm mb-6">
-            This scheme may not have a required documents list, or your session has expired.
-          </p>
+          <h2 className="text-gray-800 font-semibold text-lg mb-2">{T.noDocListTitle}</h2>
+          <p className="text-gray-500 text-sm mb-6">{T.noDocListBody}</p>
           <Link
             href={sessionId ? `/results?session=${sessionId}` : '/results'}
             className="inline-flex items-center gap-2 bg-indigo-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors"
           >
-            ← Back to Results
+            {T.backToResults}
           </Link>
         </div>
       </div>
@@ -114,10 +113,11 @@ function DocumentsContent() {
             href={sessionId ? `/scheme/${schemeId}?session=${sessionId}` : `/scheme/${schemeId}`}
             className="flex-shrink-0 text-indigo-600 hover:text-indigo-800 text-sm font-medium"
           >
-            ← Scheme Details
+            {T.backToSchemeDetails}
           </Link>
           <span className="text-gray-300 flex-shrink-0">|</span>
-          <span className="text-gray-600 text-sm truncate">{scheme.scheme_name}</span>
+          <span className="text-gray-600 text-sm truncate flex-1">{scheme.scheme_name}</span>
+          <LangToggle lang={lang} onToggle={onToggleLang} />
         </div>
       </header>
 
@@ -130,9 +130,9 @@ function DocumentsContent() {
               🔍
             </div>
             <div>
-              <h1 className="text-gray-900 font-bold text-lg leading-snug">Document Verification</h1>
+              <h1 className="text-gray-900 font-bold text-lg leading-snug">{T.documentVerification}</h1>
               <p className="text-gray-500 text-sm mt-0.5 leading-relaxed">
-                Upload each document. We verify the type and check that the details match your profile.
+                {T.docVerifySubtitle}
               </p>
             </div>
           </div>
@@ -140,8 +140,8 @@ function DocumentsContent() {
           {/* Progress bar */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between text-xs font-medium">
-              <span className="text-gray-500">{confirmed} of {total} verified</span>
-              {allDone && <span className="text-green-600 font-semibold">All documents verified!</span>}
+              <span className="text-gray-500">{T.verifiedCount(confirmed, total)}</span>
+              {allDone && <span className="text-green-600 font-semibold">{T.allVerified}</span>}
             </div>
             <div className="w-full bg-gray-100 rounded-full h-2">
               <div
@@ -156,9 +156,7 @@ function DocumentsContent() {
         <div className="flex items-start gap-2.5 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
           <span className="text-amber-500 flex-shrink-0 mt-0.5 text-base">⚠</span>
           <p className="text-xs text-amber-700 leading-relaxed">
-            <span className="font-semibold">Notice:</span> Verification is based on visual features only.
-            Scheme Sarathi does not connect to any government database and cannot confirm document authenticity.
-            Always verify with the scheme authority.
+            <span className="font-semibold">{T.noticeLabel}</span> {T.noticeText}
           </p>
         </div>
 
@@ -169,6 +167,7 @@ function DocumentsContent() {
               key={doc.label}
               doc={doc}
               sessionId={sessionId}
+              lang={lang}
               onUpdate={(patch) => updateDoc(i, patch)}
             />
           ))}
@@ -179,7 +178,7 @@ function DocumentsContent() {
           href={sessionId ? `/scheme/${schemeId}?session=${sessionId}` : `/scheme/${schemeId}`}
           className="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-5 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-sm"
         >
-          ← Back to Scheme Details
+          {T.backToSchemeDetailsBtn}
         </Link>
       </main>
     </div>
@@ -191,12 +190,15 @@ function DocumentsContent() {
 function DocCard({
   doc,
   sessionId,
+  lang,
   onUpdate,
 }: {
   doc: DocItem
   sessionId: string
+  lang: Lang
   onUpdate: (patch: Partial<DocItem>) => void
 }) {
+  const T = t(lang)
   const fileRef = useRef<HTMLInputElement>(null)
 
   async function handleFile(file: File) {
@@ -204,7 +206,6 @@ function DocCard({
     const isImage = file.type.startsWith('image/')
     if (!isPdf && !isImage) return
 
-    // Image preview
     if (isImage) {
       const reader = new FileReader()
       reader.onload = (e) => onUpdate({ preview: e.target?.result as string })
@@ -276,12 +277,12 @@ function DocCard({
   }
 
   const badgeLabel: Record<DocStatus, string> = {
-    missing:    'Missing',
-    uploading:  'Verifying…',
-    rejected:   'Rejected',
-    mismatch:   'Details Mismatch',
-    unverified: 'Needs Confirmation',
-    confirmed:  'Verified',
+    missing:    T.statusMissing,
+    uploading:  T.statusVerifying,
+    rejected:   T.statusRejected,
+    mismatch:   T.statusMismatch,
+    unverified: T.statusNeedsConfirm,
+    confirmed:  T.statusVerified,
   }
 
   return (
@@ -301,7 +302,7 @@ function DocCard({
 
         {/* Missing — upload zone */}
         {doc.status === 'missing' && (
-          <UploadZone onFile={handleFile} onDrop={handleDrop} fileRef={fileRef} />
+          <UploadZone onFile={handleFile} onDrop={handleDrop} fileRef={fileRef} lang={lang} />
         )}
 
         {/* Uploading */}
@@ -312,7 +313,7 @@ function DocCard({
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
             </svg>
             <div>
-              <p className="text-sm font-medium text-gray-700">Verifying document…</p>
+              <p className="text-sm font-medium text-gray-700">{T.verifyingDoc}</p>
               <p className="text-xs text-gray-400">{doc.fileName}</p>
             </div>
           </div>
@@ -326,7 +327,7 @@ function DocCard({
               <div className="flex items-center gap-2">
                 <span className="text-red-500 text-base">✗</span>
                 <p className="text-sm font-semibold text-red-800">
-                  {doc.verifyResult.is_real_document ? 'Wrong Document Type' : 'Not a Valid Document'}
+                  {doc.verifyResult.is_real_document ? T.wrongDocType : T.notValidDoc}
                 </p>
               </div>
               {doc.verifyResult.rejection_reason && (
@@ -336,8 +337,8 @@ function DocCard({
               )}
               {doc.verifyResult.identified_type && doc.verifyResult.identified_type !== 'Unknown' && (
                 <p className="text-xs text-red-600 pl-6">
-                  Detected: <span className="font-medium">{doc.verifyResult.identified_type}</span>
-                  {' '}({doc.verifyResult.confidence} confidence)
+                  {T.detected} <span className="font-medium">{doc.verifyResult.identified_type}</span>
+                  {' '}(<ConfidenceLabel confidence={doc.verifyResult.confidence} lang={lang} />)
                 </p>
               )}
             </div>
@@ -345,7 +346,7 @@ function DocCard({
               onClick={handleReset}
               className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2.5 rounded-xl transition-colors"
             >
-              Upload Correct Document
+              {T.uploadCorrect}
             </button>
           </div>
         )}
@@ -354,44 +355,42 @@ function DocCard({
         {doc.status === 'mismatch' && doc.verifyResult && (
           <div className="space-y-3">
             <PreviewRow doc={doc} />
-            <TypeMatchBadge result={doc.verifyResult} />
+            <TypeMatchBadge result={doc.verifyResult} lang={lang} />
             <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 space-y-1">
-              <p className="text-xs font-semibold text-amber-800">Details don&apos;t fully match your profile</p>
+              <p className="text-xs font-semibold text-amber-800">{T.detailsMismatch}</p>
               <p className="text-xs text-amber-700 leading-relaxed">{doc.verifyResult.rejection_reason}</p>
             </div>
-            <FieldChecksTable checks={doc.verifyResult.field_checks} />
+            <FieldChecksTable checks={doc.verifyResult.field_checks} lang={lang} />
             <ExtractedFieldsRow extracted={doc.verifyResult.extracted_fields} />
             <div className="flex gap-2">
               <button
                 onClick={() => onUpdate({ status: 'confirmed' })}
                 className="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium px-3 py-2.5 rounded-xl transition-colors"
               >
-                Confirm Anyway
+                {T.confirmAnyway}
               </button>
               <button
                 onClick={handleReset}
                 className="bg-gray-100 hover:bg-gray-200 text-gray-600 text-sm px-3 py-2.5 rounded-xl transition-colors"
               >
-                Replace
+                {T.replace}
               </button>
             </div>
           </div>
         )}
 
-        {/* ── Unverified (right type, details not readable / no profile) ─────── */}
+        {/* ── Unverified ────────────────────────────────────────────────────── */}
         {doc.status === 'unverified' && doc.verifyResult && (
           <div className="space-y-3">
             <PreviewRow doc={doc} />
-            <TypeMatchBadge result={doc.verifyResult} />
+            <TypeMatchBadge result={doc.verifyResult} lang={lang} />
             {doc.verifyResult.field_checks.length > 0 && (
-              <FieldChecksTable checks={doc.verifyResult.field_checks} />
+              <FieldChecksTable checks={doc.verifyResult.field_checks} lang={lang} />
             )}
             <ExtractedFieldsRow extracted={doc.verifyResult.extracted_fields} />
             {doc.verifyResult.field_checks.length === 0 && (
               <div className="bg-blue-50 border border-blue-200 rounded-xl px-4 py-3">
-                <p className="text-xs text-blue-700">
-                  Document type matches. Some fields couldn&apos;t be verified — confirm if this is the correct document.
-                </p>
+                <p className="text-xs text-blue-700">{T.typeMatchNote}</p>
               </div>
             )}
             <div className="flex gap-2">
@@ -399,13 +398,13 @@ function DocCard({
                 onClick={() => onUpdate({ status: 'confirmed' })}
                 className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-3 py-2.5 rounded-xl transition-colors"
               >
-                ✓ Confirm Document
+                {T.confirmDoc}
               </button>
               <button
                 onClick={handleReset}
                 className="bg-gray-100 hover:bg-gray-200 text-gray-600 text-sm px-3 py-2.5 rounded-xl transition-colors"
               >
-                Replace
+                {T.replace}
               </button>
             </div>
           </div>
@@ -419,23 +418,23 @@ function DocCard({
               <span className="text-green-600 text-lg">✓</span>
               <div>
                 <p className="text-sm font-semibold text-green-800">
-                  {doc.verifyResult.identified_type} verified
+                  {doc.verifyResult.identified_type} {T.verified}
                 </p>
                 {doc.verifyResult.field_checks.filter((f) => f.match === true).length > 0 && (
                   <p className="text-xs text-green-600">
-                    {doc.verifyResult.field_checks.filter((f) => f.match === true).map((f) => f.label).join(' · ')} matched
+                    {doc.verifyResult.field_checks.filter((f) => f.match === true).map((f) => f.label).join(' · ')} {T.matched}
                   </p>
                 )}
               </div>
             </div>
             {doc.verifyResult.field_checks.length > 0 && (
-              <FieldChecksTable checks={doc.verifyResult.field_checks} />
+              <FieldChecksTable checks={doc.verifyResult.field_checks} lang={lang} />
             )}
             <button
               onClick={handleReset}
               className="text-xs text-gray-400 hover:text-gray-600 transition-colors underline underline-offset-2"
             >
-              Remove and re-upload
+              {T.removeReupload}
             </button>
           </div>
         )}
@@ -466,29 +465,37 @@ function PreviewRow({ doc }: { doc: DocItem }) {
   )
 }
 
-function TypeMatchBadge({ result }: { result: VerifyResponse }) {
+function TypeMatchBadge({ result, lang }: { result: VerifyResponse; lang: Lang }) {
+  const T = t(lang)
   return (
     <div className="flex items-center gap-2">
-      <span className="text-xs text-gray-400">Identified as:</span>
+      <span className="text-xs text-gray-400">{T.identifiedAs}</span>
       <span className="text-xs font-semibold text-gray-700 bg-gray-100 px-2.5 py-1 rounded-full">
         {result.identified_type}
       </span>
-      <ConfidencePill confidence={result.confidence} />
+      <ConfidencePill confidence={result.confidence} lang={lang} />
     </div>
   )
 }
 
-function FieldChecksTable({ checks }: { checks: VerifyResponse['field_checks'] }) {
+function ConfidenceLabel({ confidence, lang }: { confidence: 'high' | 'medium' | 'low'; lang: Lang }) {
+  const T = t(lang)
+  const labels = { high: T.highConfidence, medium: T.medConfidence, low: T.lowConfidence }
+  return <>{labels[confidence]}</>
+}
+
+function FieldChecksTable({ checks, lang }: { checks: VerifyResponse['field_checks']; lang: Lang }) {
+  const T = t(lang)
   if (checks.length === 0) return null
   return (
     <div className="border border-gray-200 rounded-xl overflow-hidden">
       <table className="w-full text-xs">
         <thead>
           <tr className="bg-gray-50 border-b border-gray-200">
-            <th className="text-left px-3 py-2 text-gray-500 font-medium">Field</th>
-            <th className="text-left px-3 py-2 text-gray-500 font-medium">Your Profile</th>
-            <th className="text-left px-3 py-2 text-gray-500 font-medium">On Document</th>
-            <th className="text-center px-3 py-2 text-gray-500 font-medium">Match</th>
+            <th className="text-left px-3 py-2 text-gray-500 font-medium">{T.fieldCol}</th>
+            <th className="text-left px-3 py-2 text-gray-500 font-medium">{T.profileCol}</th>
+            <th className="text-left px-3 py-2 text-gray-500 font-medium">{T.docCol}</th>
+            <th className="text-center px-3 py-2 text-gray-500 font-medium">{T.matchCol}</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100">
@@ -496,7 +503,7 @@ function FieldChecksTable({ checks }: { checks: VerifyResponse['field_checks'] }
             <tr key={c.field} className={c.match === false ? 'bg-red-50/40' : c.match === true ? 'bg-green-50/30' : ''}>
               <td className="px-3 py-2 font-medium text-gray-700">{c.label}</td>
               <td className="px-3 py-2 text-gray-600">{c.profile_value}</td>
-              <td className="px-3 py-2 text-gray-600">{c.document_value ?? <span className="text-gray-300 italic">not visible</span>}</td>
+              <td className="px-3 py-2 text-gray-600">{c.document_value ?? <span className="text-gray-300 italic">{T.notVisible}</span>}</td>
               <td className="px-3 py-2 text-center">
                 {c.match === true  && <span className="text-green-600 font-bold">✓</span>}
                 {c.match === false && <span className="text-red-600 font-bold">✗</span>}
@@ -534,11 +541,14 @@ function UploadZone({
   onFile,
   onDrop,
   fileRef,
+  lang,
 }: {
   onFile: (f: File) => void
   onDrop: (e: React.DragEvent) => void
   fileRef: React.RefObject<HTMLInputElement>
+  lang: Lang
 }) {
+  const T = t(lang)
   const [dragging, setDragging] = useState(false)
 
   return (
@@ -551,8 +561,8 @@ function UploadZone({
         ${dragging ? 'border-indigo-400 bg-indigo-50' : 'border-gray-200 hover:border-indigo-300 hover:bg-indigo-50/30'}`}
     >
       <div className="text-2xl">📸</div>
-      <p className="text-sm font-medium text-gray-600">Tap or drag to upload</p>
-      <p className="text-xs text-gray-400">Photo (JPG / PNG / WEBP) or PDF scan</p>
+      <p className="text-sm font-medium text-gray-600">{T.tapOrDrag}</p>
+      <p className="text-xs text-gray-400">{T.photoOrPdf}</p>
       <input
         ref={fileRef}
         type="file"
@@ -570,11 +580,12 @@ function UploadZone({
 
 // ─── ConfidencePill ───────────────────────────────────────────────────────────
 
-function ConfidencePill({ confidence }: { confidence: 'high' | 'medium' | 'low' }) {
+function ConfidencePill({ confidence, lang }: { confidence: 'high' | 'medium' | 'low'; lang: Lang }) {
+  const T = t(lang)
   const cfg = {
-    high:   { cls: 'bg-green-100 text-green-700',  label: 'High confidence' },
-    medium: { cls: 'bg-amber-100 text-amber-700',  label: 'Medium confidence' },
-    low:    { cls: 'bg-red-100 text-red-600',      label: 'Low confidence' },
+    high:   { cls: 'bg-green-100 text-green-700',  label: T.highConfidence },
+    medium: { cls: 'bg-amber-100 text-amber-700',  label: T.medConfidence },
+    low:    { cls: 'bg-red-100 text-red-600',      label: T.lowConfidence },
   }[confidence]
   return (
     <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${cfg.cls}`}>

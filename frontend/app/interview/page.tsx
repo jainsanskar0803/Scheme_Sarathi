@@ -4,6 +4,9 @@ import { useEffect, useRef, useState, useCallback, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createProfile, sendChatMessage, matchSchemes, transcribeAudio, speakText, ApiError } from '@/lib/api'
 import type { ChatMessage, Completeness } from '@/lib/types'
+import { useLanguage } from '@/lib/use-language'
+import { LangToggle } from '@/lib/lang-toggle'
+import { t } from '@/lib/translations'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -19,16 +22,19 @@ function generateId() {
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
 export default function InterviewPage() {
+  const { lang, toggle } = useLanguage()
+  const T = t(lang)
   return (
-    <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center"><LoadingSpinner label="Loading interview..." /></div>}>
-      <InterviewContent />
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center"><LoadingSpinner label={T.loadingInterview} /></div>}>
+      <InterviewContent lang={lang} onToggleLang={toggle} />
     </Suspense>
   )
 }
 
 // ─── Main content ─────────────────────────────────────────────────────────────
 
-function InterviewContent() {
+function InterviewContent({ lang, onToggleLang }: { lang: import('@/lib/translations').Lang; onToggleLang: () => void }) {
+  const T = t(lang)
   const router = useRouter()
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session')
@@ -47,8 +53,8 @@ function InterviewContent() {
   // Voice state
   const [voiceState, setVoiceState] = useState<VoiceState>('idle')
   const [voiceError, setVoiceError] = useState<string | null>(null)
-  const [ttsOn, setTtsOn] = useState(false)          // speaker toggle
-  const [lastLang, setLastLang] = useState('en')     // track last detected language for TTS
+  const [ttsOn, setTtsOn] = useState(false)
+  const [lastLang, setLastLang] = useState('en')
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
   const ttsAudioRef = useRef<HTMLAudioElement | null>(null)
@@ -85,7 +91,7 @@ function InterviewContent() {
       const result = await speakText(text, language)
       const audio = new Audio(`data:audio/wav;base64,${result.audio_base64}`)
       ttsAudioRef.current = audio
-      audio.play().catch(() => {}) // iOS autoplay restriction — silent fail
+      audio.play().catch(() => {})
     } catch {
       // TTS is enhancement only; never block the chat flow
     }
@@ -97,7 +103,7 @@ function InterviewContent() {
     const text = (textOverride ?? inputValue).trim()
     if (!text || isLoading || !sessionId) return
 
-    lastWasVoiceRef.current = !!textOverride  // true when called from voice flow
+    lastWasVoiceRef.current = !!textOverride
     const userMsg: ChatMessage = { id: generateId(), role: 'user', content: text, timestamp: new Date() }
     setMessages((prev) => [...prev, userMsg])
     setInputValue('')
@@ -120,9 +126,7 @@ function InterviewContent() {
         setInterviewDone(true)
         const doneMsg: ChatMessage = {
           id: generateId(), role: 'assistant',
-          content: data.language === 'hi'
-            ? 'बढ़िया! आपकी सभी जानकारी मिल गई। अपनी योजनाएं देखने के लिए नीचे का बटन दबाएं।'
-            : "Great! I have enough information to find relevant schemes for you. Click the button below to see your results.",
+          content: data.language === 'hi' ? T.interviewDoneMsgHi : T.interviewDoneMsg,
           timestamp: new Date(),
         }
         setMessages((prev) => [...prev, doneMsg])
@@ -144,7 +148,7 @@ function InterviewContent() {
 
   async function startRecording() {
     setVoiceError(null)
-    ttsAudioRef.current?.pause()   // stop any playing TTS before recording
+    ttsAudioRef.current?.pause()
 
     if (typeof MediaRecorder === 'undefined') {
       setVoiceError('Voice input is not supported in this browser. Please type your message.')
@@ -169,7 +173,6 @@ function InterviewContent() {
       return
     }
 
-    // Pick the best supported MIME type
     const mimeType = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg'].find(
       (t) => MediaRecorder.isTypeSupported(t),
     ) || ''
@@ -203,10 +206,9 @@ function InterviewContent() {
         setVoiceState('error')
         return
       }
-      // Show transcription in input field briefly, then auto-send
       setInputValue(text)
       setVoiceState('idle')
-      setTtsOn(true)    // entering voice mode → enable TTS output automatically
+      setTtsOn(true)
       await handleSend(text)
     } catch {
       setVoiceError('Transcription failed. Please try again or type your message.')
@@ -250,7 +252,7 @@ function InterviewContent() {
   const showFindButton = interviewDone || (completeness !== null && completeness.core_percent >= 0.8)
 
   if (!sessionId && !error) {
-    return <div className="min-h-screen bg-gray-50 flex items-center justify-center"><LoadingSpinner label="Starting your session..." /></div>
+    return <div className="min-h-screen bg-gray-50 flex items-center justify-center"><LoadingSpinner label={T.startingSession} /></div>
   }
 
   return (
@@ -263,19 +265,22 @@ function InterviewContent() {
             onClick={() => router.push(fromAssisted ? '/assisted/citizens' : '/')}
             className="text-indigo-600 hover:text-indigo-800 transition-colors text-sm font-medium flex-shrink-0"
           >
-            {fromAssisted ? '← Citizens' : '← Home'}
+            {fromAssisted ? T.backCitizens : T.backHome}
           </button>
 
           {/* Progress bar */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-1">
-              <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Profile Complete</span>
+              <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">{T.profileComplete}</span>
               <span className="text-xs font-bold text-indigo-600">{progressPercent}%</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
               <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 h-2 rounded-full transition-all duration-300" style={{ width: `${progressPercent}%` }} />
             </div>
           </div>
+
+          {/* Language toggle */}
+          <LangToggle lang={lang} onToggle={onToggleLang} />
 
           {/* TTS toggle */}
           <button
@@ -285,7 +290,7 @@ function InterviewContent() {
                 return !v
               })
             }}
-            title={ttsOn ? 'Turn off voice responses' : 'Turn on voice responses'}
+            title={ttsOn ? T.turnOffVoice : T.turnOnVoice}
             className={`flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-colors border ${
               ttsOn ? 'bg-indigo-600 border-indigo-600 text-white' : 'bg-white border-gray-300 text-gray-400 hover:border-indigo-400 hover:text-indigo-500'
             }`}
@@ -332,7 +337,7 @@ function InterviewContent() {
         {showFindButton && (
           <div className="flex flex-col items-center gap-3 my-4">
             <div className="text-sm text-gray-500 text-center">
-              {interviewDone ? 'Interview complete!' : `Profile ${progressPercent}% complete — ready to find schemes!`}
+              {interviewDone ? T.interviewDone : T.profileReady(progressPercent)}
             </div>
             <button
               onClick={handleFindBenefits}
@@ -340,9 +345,9 @@ function InterviewContent() {
               className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-indigo-500/25 transition-all duration-200 hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 text-base"
             >
               {isMatchLoading ? (
-                <><svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>Evaluating schemes...</>
+                <><svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>{T.evaluatingSchemesBtn}</>
               ) : (
-                <><span>🔍</span>Find My Benefits</>
+                <><span>🔍</span>{T.findBenefits}</>
               )}
             </button>
           </div>
@@ -358,7 +363,7 @@ function InterviewContent() {
           {/* Missing fields chips */}
           {completeness && completeness.missing_core.length > 0 && (
             <div className="flex flex-wrap gap-1.5">
-              <span className="text-xs text-gray-400">Still needed:</span>
+              <span className="text-xs text-gray-400">{T.stillNeeded}</span>
               {completeness.missing_core.slice(0, 5).map((f) => (
                 <span key={f} className="text-xs bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full">{f}</span>
               ))}
@@ -369,8 +374,8 @@ function InterviewContent() {
           {voiceState === 'recording' && (
             <div className="flex items-center gap-2 bg-red-50 border border-red-200 rounded-xl px-3 py-2">
               <span className="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse flex-shrink-0" />
-              <span className="text-sm text-red-700 font-medium flex-1">Recording… speak now</span>
-              <button onClick={stopRecording} className="text-xs text-red-600 font-semibold underline">Stop</button>
+              <span className="text-sm text-red-700 font-medium flex-1">{T.recording}</span>
+              <button onClick={stopRecording} className="text-xs text-red-600 font-semibold underline">{T.stop}</button>
             </div>
           )}
           {voiceState === 'transcribing' && (
@@ -379,7 +384,7 @@ function InterviewContent() {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>
-              <span className="text-sm text-indigo-700">Transcribing…</span>
+              <span className="text-sm text-indigo-700">{T.transcribing}</span>
             </div>
           )}
           {voiceError && (
@@ -397,7 +402,7 @@ function InterviewContent() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Type your message… (Enter to send, Shift+Enter for new line)"
+              placeholder={T.inputPlaceholder}
               rows={1}
               disabled={isLoading || isMatchLoading || voiceState === 'recording' || voiceState === 'transcribing'}
               className="flex-1 resize-none rounded-xl border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none px-4 py-3 text-sm text-gray-800 placeholder-gray-400 transition-all max-h-32 disabled:bg-gray-50 disabled:cursor-not-allowed"
@@ -434,12 +439,12 @@ function InterviewContent() {
           {/* Language / mode hint */}
           <div className="flex items-center justify-between px-1">
             <p className="text-xs text-gray-400">
-              {voiceState === 'idle' && ttsOn ? '🔊 Voice responses on' : ''}
-              {voiceState === 'idle' && !ttsOn ? 'Tap 🎤 to speak in Hindi, English, or Hinglish' : ''}
+              {voiceState === 'idle' && ttsOn ? T.voiceOn : ''}
+              {voiceState === 'idle' && !ttsOn ? T.voiceHint : ''}
             </p>
             {ttsOn && voiceState === 'idle' && (
               <button onClick={() => { setTtsOn(false); ttsAudioRef.current?.pause() }} className="text-xs text-gray-400 hover:text-gray-600 underline underline-offset-2">
-                Turn off voice
+                {T.turnOffVoiceBtn}
               </button>
             )}
           </div>
