@@ -11,6 +11,7 @@ Endpoints (all under /api/assisted):
 """
 from __future__ import annotations
 
+import os
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException
@@ -98,6 +99,21 @@ def _citizen_or_404(session_id: str) -> dict:
 
 
 # ─── Endpoints ────────────────────────────────────────────────────────────────
+
+
+@router.get("/health")
+def assisted_health() -> dict:
+    """Verify citizen_metadata and scheme_followup tables are accessible."""
+    if not os.environ.get("USE_SUPABASE", "").lower() == "true":
+        return {"status": "ok", "backend": "memory"}
+    try:
+        from backend.db.supabase import get_client
+        client = get_client()
+        client.table("citizen_metadata").select("session_id").limit(1).execute()
+        client.table("scheme_followup").select("session_id").limit(1).execute()
+        return {"status": "ok", "backend": "supabase"}
+    except Exception as exc:
+        return {"status": "error", "backend": "supabase", "detail": str(exc)}
 
 
 @router.post("/citizens", response_model=CitizenResponse, status_code=201)

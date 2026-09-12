@@ -113,9 +113,14 @@ def _supabase() -> bool:
 
 
 def _sb_citizen_create(record: dict) -> dict:
+    import logging
     from backend.db.supabase import get_client
-    get_client().table(_CITIZEN_TABLE).insert(record).execute()
-    return record
+    try:
+        res = get_client().table(_CITIZEN_TABLE).insert(record).execute()
+        return res.data[0] if res.data else record
+    except Exception as exc:
+        logging.error("Supabase insert into %s failed: %s", _CITIZEN_TABLE, exc)
+        raise
 
 
 def _sb_citizen_get(session_id: str) -> Optional[dict]:
