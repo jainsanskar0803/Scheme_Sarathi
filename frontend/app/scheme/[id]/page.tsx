@@ -8,6 +8,7 @@ import { useLanguage } from '@/lib/use-language'
 import { LangToggle } from '@/lib/lang-toggle'
 import { t } from '@/lib/translations'
 import type { Lang } from '@/lib/translations'
+import { translateScheme } from '@/lib/translate-scheme'
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
@@ -31,6 +32,8 @@ function SchemeDetailContent({ lang, onToggleLang }: { lang: Lang; onToggleLang:
 
   const [scheme, setScheme] = useState<SchemeMatchResult | null>(null)
   const [notFound, setNotFound] = useState(false)
+  const [translatedScheme, setTranslatedScheme] = useState<SchemeMatchResult | null>(null)
+  const [translating, setTranslating] = useState(false)
 
   useEffect(() => {
     try {
@@ -48,6 +51,21 @@ function SchemeDetailContent({ lang, onToggleLang }: { lang: Lang; onToggleLang:
       setNotFound(true)
     }
   }, [schemeId])
+
+  useEffect(() => {
+    if (lang !== 'hi' || !scheme) {
+      setTranslatedScheme(null)
+      return
+    }
+    let cancelled = false
+    setTranslating(true)
+    translateScheme(scheme)
+      .then((tr) => { if (!cancelled) { setTranslatedScheme(tr); setTranslating(false) } })
+      .catch(() => { if (!cancelled) setTranslating(false) })
+    return () => { cancelled = true }
+  }, [lang, scheme])
+
+  const displayScheme = lang === 'hi' ? (translatedScheme ?? scheme) : scheme
 
   if (notFound) {
     return (
@@ -67,9 +85,21 @@ function SchemeDetailContent({ lang, onToggleLang }: { lang: Lang; onToggleLang:
     )
   }
 
-  if (!scheme) return <Spinner />
+  if (!displayScheme) return <Spinner />
 
-  return <SchemeDetail scheme={scheme} sessionId={sessionId} lang={lang} onToggleLang={onToggleLang} />
+  return (
+    <div className="relative">
+      {translating && (
+        <div className="fixed inset-0 z-50 bg-white/60 backdrop-blur-sm flex items-center justify-center">
+          <div className="bg-white rounded-2xl border border-indigo-100 shadow-lg px-8 py-6 flex flex-col items-center gap-3">
+            <Spinner />
+            <p className="text-indigo-600 text-sm font-medium">हिंदी में अनुवाद हो रहा है…</p>
+          </div>
+        </div>
+      )}
+      <SchemeDetail scheme={displayScheme} sessionId={sessionId} lang={lang} onToggleLang={onToggleLang} />
+    </div>
+  )
 }
 
 // ─── Main detail view ─────────────────────────────────────────────────────────

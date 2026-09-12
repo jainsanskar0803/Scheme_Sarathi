@@ -1,14 +1,16 @@
 'use client'
 
-import { useEffect, useState, useMemo, useCallback, Suspense } from 'react'
+import { useEffect, useState, useMemo, useCallback, useRef, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { matchSchemes, ApiError } from '@/lib/api'
+import { matchSchemes, translateTexts, ApiError } from '@/lib/api'
 import type { MatchResponse, SchemeMatchResult, ConditionExplanation, Profile } from '@/lib/types'
 import { useLanguage } from '@/lib/use-language'
 import { LangToggle } from '@/lib/lang-toggle'
 import { t } from '@/lib/translations'
 import type { Lang } from '@/lib/translations'
+
+interface CardTr { name: string; benefit: string }
 
 const PAGE_SIZE = 20
 
@@ -101,6 +103,10 @@ function ResultsContent({ lang, onToggleLang }: { lang: Lang; onToggleLang: () =
   const [sort, setSort] = useState<SortKey>('strength')
   const [page, setPage] = useState(1)
 
+  // Card-level Hindi translations: scheme_id → {name, benefit}
+  const [cardTr, setCardTr] = useState<Map<string, CardTr>>(new Map())
+  const translatingIds = useRef<Set<string>>(new Set())
+
   const loadResults = useCallback(async () => {
     if (!sessionId) { setError('No session found. Please start from the home page.'); setLoading(false); return }
     try {
@@ -125,6 +131,14 @@ function ResultsContent({ lang, onToggleLang }: { lang: Lang; onToggleLang: () =
   // Reset page when filters change
   useEffect(() => { setPage(1) }, [activeTab, search, category, sort])
 
+  // Reset card translations when switching away from Hindi or when filter context changes
+  useEffect(() => {
+    if (lang !== 'hi') {
+      setCardTr(new Map())
+      translatingIds.current = new Set()
+    }
+  }, [lang, activeTab, search, category, sort])
+
   const activeSchemes = useMemo(() => {
     if (!data) return []
     return data[activeTab]
@@ -141,6 +155,40 @@ function ResultsContent({ lang, onToggleLang }: { lang: Lang; onToggleLang: () =
 
   const paged = useMemo(() => filtered.slice(0, page * PAGE_SIZE), [filtered, page])
   const hasMore = paged.length < filtered.length
+
+  // Translate scheme names + benefits for visible cards when Hindi is active
+  useEffect(() => {
+    if (lang !== 'hi' || paged.length === 0) return
+    const toTr = paged.filter((s) => !translatingIds.current.has(s.scheme_id) && !cardTr.has(s.scheme_id))
+    if (toTr.length === 0) return
+    toTr.forEach((s) => translatingIds.current.add(s.scheme_id))
+
+    const texts: (string | null)[] = []
+    const meta: { id: string; ni: number; bi: number }[] = []
+    for (const s of toTr) {
+      meta.push({ id: s.scheme_id, ni: texts.length, bi: texts.length + 1 })
+      texts.push(s.scheme_name, s.benefit || null)
+    }
+
+    let cancelled = false
+    translateTexts(texts).then((trs) => {
+      if (cancelled) return
+      setCardTr((prev) => {
+        const next = new Map(prev)
+        for (const { id, ni, bi } of meta) {
+          const orig = toTr.find((s) => s.scheme_id === id)!
+          next.set(id, {
+            name: (trs[ni] as string) || orig.scheme_name,
+            benefit: (trs[bi] as string) || orig.benefit,
+          })
+        }
+        return next
+      })
+    }).catch(() => {
+      toTr.forEach((s) => translatingIds.current.delete(s.scheme_id))
+    })
+    return () => { cancelled = true }
+  }, [lang, paged]) // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) return <LoadingState lang={lang} />
   if (error) return <ErrorState message={error} onBack={() => router.push('/')} lang={lang} />
@@ -293,11 +341,11 @@ function ResultsContent({ lang, onToggleLang }: { lang: Lang; onToggleLang: () =
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {paged.map((scheme) => (
             activeTab === 'eligible' ? (
-              <EligibleCard key={scheme.scheme_id} scheme={scheme} sessionId={sessionId ?? ''} lang={lang} />
+              <EligibleCard key={scheme.scheme_id} scheme={scheme} sessionId={sessionId ?? ''} lang={lang} tr={cardTr.get(scheme.scheme_id)} />
             ) : activeTab === 'near_miss' ? (
-              <NearMissCard key={scheme.scheme_id} scheme={scheme} sessionId={sessionId ?? ''} lang={lang} />
+              <NearMissCard key={scheme.scheme_id} scheme={scheme} sessionId={sessionId ?? ''} lang={lang} tr={cardTr.get(scheme.scheme_id)} />
             ) : (
-              <InsufficientCard key={scheme.scheme_id} scheme={scheme} sessionId={sessionId ?? ''} lang={lang} />
+              <InsufficientCard key={scheme.scheme_id} scheme={scheme} sessionId={sessionId ?? ''} lang={lang} tr={cardTr.get(scheme.scheme_id)} />
             )
           ))}
         </div>
@@ -368,7 +416,7 @@ function ProfileStrip({ profile, lang }: { profile: Profile; lang: Lang }) {
 
 // ─── Eligible Card ────────────────────────────────────────────────────────────
 
-function EligibleCard({ scheme, sessionId, lang }: { scheme: SchemeMatchResult; sessionId: string; lang: Lang }) {
+function EligibleCard({ scheme, sessionId, lang, tr }: { scheme: SchemeMatchResult; sessionId: string; lang: Lang; tr?: CardTr }) {
   const T = t(lang)
   const [expanded, setExpanded] = useState(false)
 
@@ -377,6 +425,9 @@ function EligibleCard({ scheme, sessionId, lang }: { scheme: SchemeMatchResult; 
   const showDocs = scheme.required_documents
     ? scheme.required_documents.split(/[,\n]/).map((d) => d.trim()).filter(Boolean).slice(0, 3)
     : []
+
+  const displayName = tr?.name || scheme.scheme_name
+  const displayBenefit = tr?.benefit || scheme.benefit
 
   return (
     <div className="bg-white border border-green-100 rounded-2xl shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-200">
@@ -390,7 +441,7 @@ function EligibleCard({ scheme, sessionId, lang }: { scheme: SchemeMatchResult; 
 
       <div className="p-4 flex-1 flex flex-col gap-3">
         {/* Name */}
-        <h3 className="text-gray-900 font-semibold text-sm leading-snug">{scheme.scheme_name}</h3>
+        <h3 className="text-gray-900 font-semibold text-sm leading-snug">{displayName}</h3>
 
         {/* Categories */}
         {scheme.category_display.length > 0 && (
@@ -402,10 +453,10 @@ function EligibleCard({ scheme, sessionId, lang }: { scheme: SchemeMatchResult; 
         )}
 
         {/* Benefit */}
-        {scheme.benefit && (
+        {displayBenefit && (
           <div className="bg-green-50 border border-green-100 rounded-lg px-3 py-2">
             <p className="text-xs font-semibold text-green-700 mb-0.5">{T.benefit}</p>
-            <p className="text-green-800 text-xs leading-relaxed line-clamp-2">{scheme.benefit}</p>
+            <p className="text-green-800 text-xs leading-relaxed line-clamp-2">{displayBenefit}</p>
           </div>
         )}
 
@@ -463,10 +514,12 @@ function EligibleCard({ scheme, sessionId, lang }: { scheme: SchemeMatchResult; 
 
 // ─── Near Miss Card ───────────────────────────────────────────────────────────
 
-function NearMissCard({ scheme, sessionId, lang }: { scheme: SchemeMatchResult; sessionId: string; lang: Lang }) {
+function NearMissCard({ scheme, sessionId, lang, tr }: { scheme: SchemeMatchResult; sessionId: string; lang: Lang; tr?: CardTr }) {
   const T = t(lang)
   const nearMissConditions = scheme.explanation.filter((c) => c.status === 'NEAR_MISS')
   const passConditions = dedupeConditions(scheme.explanation.filter((c) => c.status === 'PASS'))
+  const displayName = tr?.name || scheme.scheme_name
+  const displayBenefit = tr?.benefit || scheme.benefit
 
   return (
     <div className="bg-white border border-amber-100 rounded-2xl shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-shadow">
@@ -479,7 +532,7 @@ function NearMissCard({ scheme, sessionId, lang }: { scheme: SchemeMatchResult; 
       </div>
 
       <div className="p-4 flex-1 flex flex-col gap-3">
-        <h3 className="text-gray-900 font-semibold text-sm leading-snug">{scheme.scheme_name}</h3>
+        <h3 className="text-gray-900 font-semibold text-sm leading-snug">{displayName}</h3>
 
         {scheme.category_display.length > 0 && (
           <div className="flex flex-wrap gap-1">
@@ -489,8 +542,8 @@ function NearMissCard({ scheme, sessionId, lang }: { scheme: SchemeMatchResult; 
           </div>
         )}
 
-        {scheme.benefit && (
-          <p className="text-gray-500 text-xs leading-relaxed line-clamp-2">{scheme.benefit}</p>
+        {displayBenefit && (
+          <p className="text-gray-500 text-xs leading-relaxed line-clamp-2">{displayBenefit}</p>
         )}
 
         {/* What failed */}
@@ -546,10 +599,12 @@ function NearMissCard({ scheme, sessionId, lang }: { scheme: SchemeMatchResult; 
 
 // ─── Insufficient Info Card ───────────────────────────────────────────────────
 
-function InsufficientCard({ scheme, sessionId, lang }: { scheme: SchemeMatchResult; sessionId: string; lang: Lang }) {
+function InsufficientCard({ scheme, sessionId, lang, tr }: { scheme: SchemeMatchResult; sessionId: string; lang: Lang; tr?: CardTr }) {
   const T = t(lang)
   const notProvided = scheme.explanation.filter((c) => c.status === 'NOT_PROVIDED')
   const passing = dedupeConditions(scheme.explanation.filter((c) => c.status === 'PASS'))
+  const displayName = tr?.name || scheme.scheme_name
+  const displayBenefit = tr?.benefit || scheme.benefit
 
   return (
     <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-shadow">
@@ -561,7 +616,7 @@ function InsufficientCard({ scheme, sessionId, lang }: { scheme: SchemeMatchResu
       </div>
 
       <div className="p-4 flex-1 flex flex-col gap-3">
-        <h3 className="text-gray-900 font-semibold text-sm leading-snug">{scheme.scheme_name}</h3>
+        <h3 className="text-gray-900 font-semibold text-sm leading-snug">{displayName}</h3>
 
         {scheme.category_display.length > 0 && (
           <div className="flex flex-wrap gap-1">
@@ -571,8 +626,8 @@ function InsufficientCard({ scheme, sessionId, lang }: { scheme: SchemeMatchResu
           </div>
         )}
 
-        {scheme.benefit && (
-          <p className="text-gray-500 text-xs leading-relaxed line-clamp-2">{scheme.benefit}</p>
+        {displayBenefit && (
+          <p className="text-gray-500 text-xs leading-relaxed line-clamp-2">{displayBenefit}</p>
         )}
 
         {/* Missing info */}

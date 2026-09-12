@@ -267,4 +267,15 @@ export async function listFollowups(sessionId: string): Promise<FollowupRecord[]
   return handleResponse<FollowupRecord[]>(res)
 }
 
+// POST /api/translate → batch English → Hindi translation via Sarvam AI
+export async function translateTexts(texts: (string | null)[]): Promise<(string | null)[]> {
+  const res = await fetch(`${BASE_URL}/api/translate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ texts }),
+  })
+  const data = await handleResponse<{ translations: (string | null)[] }>(res)
+  return data.translations
+}
+
 export { ApiError }
